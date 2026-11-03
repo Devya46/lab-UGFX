@@ -1,0 +1,1038 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Choose Your Path · 4‑Card Scroll‑Reveal · Premium Dark</title>
+
+    <!-- Poppins Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome (optional, kept for consistency) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL / RESET
+    ========================================================= */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: #0a0a0c;
+        color: #ffffff;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* =========================================================
+       SECTION HEADER (compact, premium)
+    ========================================================= */
+      .path-header {
+        background: #0a0a0c;
+        text-align: center;
+        padding: 90px 32px 28px;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .path-eyebrow {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: #148ff5;
+        background: rgba(20, 143, 245, 0.08);
+        border: 1px solid rgba(20, 143, 245, 0.2);
+        padding: 0.4rem 1.4rem;
+        border-radius: 40px;
+        margin-bottom: 1.4rem;
+      }
+
+      .path-title {
+        font-size: 3rem;
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        margin-bottom: 1rem;
+      }
+
+      .path-subtitle {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: #9ca0ae;
+        font-weight: 400;
+        max-width: 620px;
+        margin: 0 auto;
+      }
+
+      /* =========================================================
+       SCROLL SECTION — DARK BACKGROUND (tight, sticky at 70px)
+    ========================================================= */
+      .scroll-section {
+        position: relative;
+        width: 100%;
+        height: 300vh;
+        background: #0a0a0c;
+      }
+
+      .sticky-viewport {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #0a0a0c;
+      }
+
+      .cards-stage {
+        position: relative;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 28px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* =========================================================
+       CARD — PREMIUM DARK (refined spacing, deeper shadows)
+    ========================================================= */
+      .card {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2.8rem;
+        background: #14151a;
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow:
+          0 40px 60px -24px rgba(0, 0, 0, 0.95),
+          0 0 0 1px rgba(255, 255, 255, 0.02);
+        padding: 2.2rem;
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        pointer-events: none;
+        will-change: transform, opacity;
+        color: #ffffff;
+      }
+
+      .card.active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* ----- CARD IMAGE ----- */
+      .card-image {
+        flex: 0 0 42%;
+        max-width: 42%;
+        border-radius: 20px;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+        background: #1a1c22;
+        box-shadow: 0 16px 28px -16px rgba(0, 0, 0, 0.9);
+      }
+
+      .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        opacity: 0.88;
+        transition: opacity 0.3s ease;
+      }
+
+      .card:hover .card-image img {
+        opacity: 1;
+      }
+
+      /* ----- CARD CONTENT (tight) ----- */
+      .card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+        padding-right: 0.2rem;
+      }
+
+      .card-tag {
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: #148ff5;
+        background: rgba(20, 143, 245, 0.1);
+        padding: 0.35rem 1.1rem;
+        border-radius: 40px;
+        align-self: flex-start;
+        border: 1px solid rgba(20, 143, 245, 0.2);
+      }
+
+      .card-heading {
+        font-size: 2.1rem;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        margin-top: 0.1rem;
+      }
+
+      .card-description {
+        font-size: 1rem;
+        line-height: 1.55;
+        color: #b2b6c2;
+        font-weight: 400;
+        max-width: 95%;
+      }
+
+      .card-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #148ff5;
+        letter-spacing: -0.02em;
+        margin-top: 0.1rem;
+      }
+
+      .card-price small {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #8a8e9c;
+        letter-spacing: 0;
+        margin-left: 0.25rem;
+      }
+
+      .card-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem 1.4rem;
+        margin-top: 0.15rem;
+      }
+
+      .card-feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #d0d4de;
+      }
+
+      .card-feature-item .check {
+        color: #148ff5;
+        font-weight: 700;
+        font-size: 1.1rem;
+        line-height: 1;
+      }
+
+      .card-button {
+        align-self: flex-start;
+        margin-top: 0.6rem;
+        padding: 0.8rem 2.2rem;
+        border-radius: 60px;
+        border: none;
+        background: #148ff5;
+        color: #ffffff;
+        font-family: "Poppins", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        box-shadow: 0 12px 24px -12px rgba(20, 143, 245, 0.6);
+      }
+
+      .card-button:hover {
+        background: #0f7ae0;
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px -12px rgba(20, 143, 245, 0.8);
+      }
+
+      /* =========================================================
+       RESPONSIVE (TABLET)
+    ========================================================= */
+      @media (max-width: 1000px) {
+        .path-title {
+          font-size: 2.4rem;
+        }
+
+        .path-header {
+          padding: 70px 28px 22px;
+        }
+
+        .card {
+          flex-direction: column;
+          gap: 1.8rem;
+          padding: 1.8rem;
+          border-radius: 26px;
+        }
+
+        .card-image {
+          flex: 0 0 auto;
+          max-width: 100%;
+          width: 100%;
+          aspect-ratio: 16 / 10;
+        }
+
+        .card-heading {
+          font-size: 1.9rem;
+        }
+
+        .card-description {
+          max-width: 100%;
+        }
+
+        .card-content {
+          gap: 0.8rem;
+        }
+      }
+
+      /* =========================================================
+       RESPONSIVE (MOBILE)
+    ========================================================= */
+      @media (max-width: 600px) {
+        .path-header {
+          padding: 50px 20px 18px;
+        }
+
+        .path-title {
+          font-size: 1.9rem;
+        }
+
+        .path-subtitle {
+          font-size: 0.95rem;
+        }
+
+        .sticky-viewport {
+          top: 20px;
+          height: 75vh;
+          min-height: 500px;
+        }
+
+        .cards-stage {
+          padding: 0 16px;
+        }
+
+        .card {
+          padding: 1.4rem;
+          border-radius: 22px;
+          gap: 1.4rem;
+        }
+
+        .card-image {
+          aspect-ratio: 4 / 3;
+          border-radius: 16px;
+        }
+
+        .card-heading {
+          font-size: 1.5rem;
+        }
+
+        .card-description {
+          font-size: 0.9rem;
+        }
+
+        .card-price {
+          font-size: 1.25rem;
+        }
+
+        .card-button {
+          padding: 0.75rem 1.8rem;
+          font-size: 0.85rem;
+        }
+
+        .card-features {
+          gap: 0.5rem 1.2rem;
+        }
+
+        .card-feature-item {
+          font-size: 0.85rem;
+        }
+      }
+
+      /* =========================================================
+       REDUCED MOTION
+    ========================================================= */
+      @media (prefers-reduced-motion: reduce) {
+        .card {
+          transition: none !important;
+          opacity: 1 !important;
+          transform: none !important;
+          position: relative;
+          display: none;
+        }
+        .card.active {
+          display: flex;
+        }
+        .scroll-section {
+          height: auto;
+        }
+        .sticky-viewport {
+          position: relative;
+          height: auto;
+          padding: 3rem 0;
+        }
+        .cards-stage {
+          position: relative;
+          display: block;
+          height: auto;
+        }
+        .card {
+          position: relative;
+          margin-bottom: 1.5rem;
+        }
+      }
+
+      /* =========================================================
+       FOOTER STYLES (unchanged, but kept)
+    ========================================================= */
+      .body-foot {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: #dddddd;
+        color: #fff;
+      }
+
+      .ftmo-footer {
+        width: 100%;
+        background: #111112;
+        border-top: 1px solid #202022;
+        color: #fff;
+      }
+
+      .footer-container {
+        width: auto;
+        margin: 0 auto;
+        padding: 0 134px 0;
+      }
+
+      .footer-newsletter {
+        padding: 66px 0 42px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+      }
+
+      .newsletter-left {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .newsletter-title {
+        margin: 0 0 8px;
+        font-size: 29px;
+        line-height: 1.2;
+        font-weight: 700;
+        letter-spacing: -0.7px;
+      }
+
+      .newsletter-features {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 28px;
+      }
+
+      .newsletter-feature {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #bdbdbf;
+        font-size: 17px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      .check-icon {
+        width: 19px;
+        height: 19px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #c9c9cb;
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      .newsletter-form {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        width: 555px;
+        flex-shrink: 0;
+      }
+
+      .newsletter-input {
+        height: 45px;
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        outline: none;
+        border-radius: 8px;
+        background: #303031;
+        color: #fff;
+        padding: 0 20px;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .newsletter-input::placeholder {
+        color: #99999c;
+        opacity: 1;
+      }
+
+      .newsletter-button {
+        height: 45px;
+        padding: 0 20px;
+        border-radius: 9px;
+        border: 1px solid #4a4a4d;
+        background: transparent;
+        color: #fff;
+        font-family: inherit;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.2s ease;
+        white-space: nowrap;
+      }
+
+      .newsletter-button:hover {
+        background: #fff;
+        color: #111;
+      }
+
+      .footer-divider {
+        width: 100%;
+        height: 1px;
+        background: #303033;
+      }
+
+      .footer-disclaimer {
+        padding: 39px 0 40px;
+      }
+
+      .footer-disclaimer p {
+        margin: 0;
+        color: #858588;
+        font-size: 14px;
+        line-height: 1.48;
+        font-weight: 500;
+        max-width: 1510px;
+      }
+
+      .social-area {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        padding-bottom: 20px;
+      }
+
+      .social-group {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .social-icon {
+        width: 43px;
+        height: 43px;
+        border: 1px solid #3e3e41;
+        border-radius: 8px;
+        background: #111112;
+        color: #bdbdbf;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        font-size: 18px;
+        transition: 0.2s ease;
+      }
+
+      .social-icon:hover {
+        background: #fff;
+        color: #111112;
+        border-color: #fff;
+        transform: translateY(-2px);
+      }
+
+      .footer-bottom {
+        min-height: 72px;
+        border-top: 1px solid #303033;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .footer-bottom-left {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 28px;
+      }
+
+      .copyright {
+        color: #89898c;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .footer-link {
+        color: #148ff5;
+        font-size: 14px;
+        font-weight: 500;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .footer-link:hover {
+        color: #fff;
+      }
+
+      .cookie-settings {
+        color: #89898c;
+      }
+
+      .footer-bottom-right {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+
+      .made-with {
+        color: #858589;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      /* Footer responsive */
+      @media (max-width: 1000px) {
+        .footer-container {
+          width: 100%;
+          padding-left: 28px;
+          padding-right: 28px;
+        }
+
+        .footer-newsletter {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 25px;
+        }
+
+        .newsletter-form {
+          width: 100%;
+          max-width: 600px;
+        }
+
+        .footer-payment-row {
+          align-items: flex-start;
+          flex-direction: column;
+          padding: 25px 0;
+        }
+
+        .footer-bottom {
+          padding: 28px 0;
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .footer-bottom-right {
+          width: 100%;
+          justify-content: space-between;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .body-foot {
+          background: #111112;
+        }
+
+        .ftmo-footer {
+          border-top: 1px solid #202022;
+        }
+
+        .footer-container {
+          width: 100%;
+          max-width: none;
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .footer-newsletter {
+          padding: 38px 0 30px;
+          gap: 22px;
+        }
+
+        .newsletter-title {
+          font-size: 23px;
+        }
+
+        .newsletter-features {
+          gap: 10px 18px;
+        }
+
+        .newsletter-feature {
+          font-size: 13px;
+          white-space: normal;
+        }
+
+        .newsletter-form {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .newsletter-input,
+        .newsletter-button {
+          width: 100%;
+        }
+
+        .footer-disclaimer {
+          padding: 0 0 27px;
+        }
+
+        .footer-disclaimer p {
+          font-size: 13px;
+          line-height: 1.48;
+        }
+
+        .footer-payment-row {
+          padding: 29px 0 29px;
+          gap: 27px;
+        }
+
+        .social-icon {
+          width: 40px;
+          height: 40px;
+          font-size: 17px;
+        }
+
+        .footer-bottom {
+          padding: 27px 0 76px;
+          min-height: auto;
+          gap: 30px;
+        }
+
+        .footer-bottom-left {
+          width: 100%;
+          gap: 14px 22px;
+          align-items: center;
+        }
+
+        .copyright,
+        .footer-link {
+          font-size: 13px;
+        }
+
+        .footer-bottom-right {
+          width: 100%;
+          gap: 16px;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+
+        .made-with,
+        .region {
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .footer-newsletter {
+          align-items: stretch;
+        }
+
+        .newsletter-features {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 9px;
+        }
+
+        .newsletter-feature {
+          white-space: normal;
+        }
+
+        .social-area,
+        .social-group {
+          width: 100%;
+        }
+
+        .social-group {
+          flex-wrap: wrap;
+        }
+
+        .footer-bottom-right {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .footer-container {
+          width: 100%;
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        .footer-disclaimer p {
+          font-size: 12px;
+        }
+
+        .footer-bottom-left {
+          gap: 16px 20px;
+        }
+
+        .footer-bottom-right {
+          gap: 10px;
+        }
+
+        .made-with,
+        .region,
+        .copyright,
+        .footer-link {
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ============================================================
+       CHOOSE YOUR PATH — SECTION HEADER (compact)
+    ============================================================ -->
+    <div class="path-header">
+      <span class="path-eyebrow">Choose Your Path</span>
+      <h1 class="path-title">Your Trading Journey Starts Here.</h1>
+      <p class="path-subtitle">
+        Whether you're just beginning or looking for personalised guidance,
+        UGFXLAB gives you multiple ways to learn and grow.
+      </p>
+    </div>
+
+    <!-- ============================================================
+       SCROLL SECTION — 4 CARDS (dark background, tight spacing)
+    ============================================================ -->
+    <section class="scroll-section" id="scrollSection">
+      <div class="sticky-viewport">
+        <div class="cards-stage" id="cardsStage">
+          <!-- CARD 1 · FREE COMMUNITY -->
+          <article class="card" data-index="0">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop&q=80"
+                alt="Free community learning"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <span class="card-tag">Free Community</span>
+              <h2 class="card-heading">Start Learning</h2>
+              <p class="card-description">
+                Market outlooks, trading education, trade breakdowns, lessons
+                and community content.
+              </p>
+              <div class="card-price">FREE</div>
+              <div class="card-features">
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Market outlooks
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Trade breakdowns
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Community content
+                </div>
+              </div>
+              <button class="card-button">Join the Community →</button>
+            </div>
+          </article>
+
+          <!-- CARD 2 · FXLABTRADES -->
+          <article class="card" data-index="1">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&auto=format&fit=crop&q=80"
+                alt="FxlabTrades live trading"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <span class="card-tag">FxlabTrades</span>
+              <h2 class="card-heading">Trade With Us</h2>
+              <p class="card-description">
+                Weekly market outlooks, trade setups, real-time management
+                updates and educational breakdowns.
+              </p>
+              <div class="card-price">From $40<small>/month</small></div>
+              <div class="card-features">
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Weekly outlooks
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Real-time updates
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Trade setups
+                </div>
+              </div>
+              <button class="card-button">Explore FxlabTrades →</button>
+            </div>
+          </article>
+
+          <!-- CARD 3 · THE LAB -->
+          <article class="card" data-index="2">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80"
+                alt="The Lab structured mentorship"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <span class="card-tag">The Lab</span>
+              <h2 class="card-heading">Build Your Foundation</h2>
+              <p class="card-description">
+                A six-month structured mentorship covering market foundations,
+                technical analysis, methodology, risk management, psychology and
+                consistency.
+              </p>
+              <div class="card-price">$599</div>
+              <div class="card-features">
+                <div class="card-feature-item">
+                  <span class="check">✓</span> 6-month program
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Risk management
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Psychology &amp; consistency
+                </div>
+              </div>
+              <button class="card-button">Explore THE LAB →</button>
+            </div>
+          </article>
+
+          <!-- CARD 4 · 1-ON-1 MENTORSHIP -->
+          <article class="card" data-index="3">
+            <div class="card-image">
+              <img
+                src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?w=800&auto=format&fit=crop&q=80"
+                alt="1-on-1 personalised mentorship"
+                loading="lazy"
+              />
+            </div>
+            <div class="card-content">
+              <span class="card-tag">1‑on‑1 Mentorship</span>
+              <h2 class="card-heading">Go Further</h2>
+              <p class="card-description">
+                Personalised mentorship for serious traders focused on
+                consistency, funding and scaling.
+              </p>
+              <div class="card-price">From $1,999</div>
+              <div class="card-features">
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Personalised plan
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Funding guidance
+                </div>
+                <div class="card-feature-item">
+                  <span class="check">✓</span> Scaling strategy
+                </div>
+              </div>
+              <button class="card-button">Explore 1‑on‑1 →</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+       SCROLL REVEAL SCRIPT (progressive card change)
+    ============================================================ -->
+    <script>
+      (function () {
+        const section = document.getElementById("scrollSection");
+        const cards = Array.from(document.querySelectorAll(".card"));
+        const totalCards = cards.length;
+
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+        if (reducedMotion) {
+          cards.forEach((card, i) => {
+            if (i === 0) card.classList.add("active");
+          });
+          return;
+        }
+
+        let ticking = false;
+
+        function updateActiveCard() {
+          const rect = section.getBoundingClientRect();
+          const stickyViewport = section.querySelector(".sticky-viewport");
+
+          const scrollableDistance =
+            section.offsetHeight - stickyViewport.offsetHeight;
+
+          const scrolled = Math.max(0, Math.min(-rect.top, scrollableDistance));
+
+          const progress =
+            scrollableDistance > 0 ? scrolled / scrollableDistance : 0;
+
+          const activeIndex = Math.min(
+            totalCards - 1,
+            Math.floor(progress * totalCards),
+          );
+
+          cards.forEach((card, idx) => {
+            card.classList.toggle("active", idx === activeIndex);
+          });
+        }
+
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              updateActiveCard();
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }
+
+        updateActiveCard();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", updateActiveCard);
+        window.addEventListener("load", updateActiveCard);
+      })();
+    </script>
+  </body>
+</html>

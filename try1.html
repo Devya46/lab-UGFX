@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trading Tools & Resources | UGFXLAB</title>
+    <meta
+      name="description"
+      content="Free Forex trading tools from UGFXLAB. Calculate lot sizes, manage risk and reward, and track Forex market sessions."
+    />
+
+    <style>
+      :root {
+        --bg: #03070a;
+        --surface: #081116;
+        --card: #0b171d;
+        --cyan: #09c8ec;
+        --white: #f5f7f8;
+        --muted: #93a5ae;
+        --border: rgba(9, 200, 236, 0.18);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--white);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button,
+      select {
+        cursor: pointer;
+      }
+      .container {
+        width: min(1180px, 92%);
+        margin: auto;
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(3, 7, 10, 0.94);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(9, 200, 236, 0.12);
+      }
+      .nav-inner {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .logo {
+        font-size: 23px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        color: var(--cyan);
+      }
+      .logo span {
+        color: white;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        font-size: 13px;
+        color: #c5d0d5;
+      }
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--cyan);
+      }
+      .nav-cta,
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--cyan);
+        border-radius: 5px;
+        padding: 11px 19px;
+        background: var(--cyan);
+        color: #001015;
+        font-size: 12px;
+        font-weight: 800;
+        transition: 0.25s;
+      }
+      .nav-cta:hover,
+      .btn:hover {
+        background: transparent;
+        color: var(--cyan);
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        color: white;
+        border: 1px solid var(--border);
+        padding: 7px 12px;
+      }
+
+      /* HERO */
+      .hero {
+        padding: 95px 0 68px;
+        text-align: center;
+        background:
+          radial-gradient(
+            ellipse at 50% 0%,
+            rgba(0, 177, 208, 0.15),
+            transparent 55%
+          ),
+          var(--bg);
+      }
+      .eyebrow {
+        color: var(--cyan);
+        font-size: 10px;
+        letter-spacing: 3px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+      .hero h1 {
+        font-size: clamp(36px, 5vw, 61px);
+        line-height: 1.12;
+        letter-spacing: -2px;
+        margin: 18px 0;
+      }
+      .accent {
+        color: var(--cyan);
+      }
+      .hero p {
+        color: var(--muted);
+        max-width: 620px;
+        margin: 0 auto 27px;
+        font-size: 14px;
+      }
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border-color: #31434b;
+      }
+      .btn-outline:hover {
+        border-color: var(--cyan);
+      }
+
+      /* SECTIONS */
+      .section {
+        padding: 64px 0;
+      }
+      .section-alt {
+        background: linear-gradient(180deg, #071015, #03070a);
+        border-top: 1px solid rgba(255, 255, 255, 0.025);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.025);
+      }
+      .section-heading {
+        text-align: center;
+        margin-bottom: 38px;
+      }
+      .section-heading h2 {
+        font-size: clamp(27px, 3.5vw, 39px);
+        letter-spacing: -1.2px;
+        margin: 10px 0;
+        line-height: 1.2;
+      }
+      .section-heading p {
+        color: var(--muted);
+        font-size: 13px;
+        max-width: 590px;
+        margin: 12px auto 0;
+      }
+
+      /* COMMON CARDS */
+      .card {
+        background: linear-gradient(145deg, #0b171d, #071015);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 27px;
+        min-width: 0;
+      }
+      .card-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 19px;
+        margin: 0 0 24px;
+      }
+      .card-icon {
+        color: var(--cyan);
+        font-size: 22px;
+      }
+      .grid-two {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px;
+      }
+      .fields {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 17px 16px;
+      }
+      .field {
+        min-width: 0;
+      }
+      .field label {
+        display: block;
+        color: #c4d0d5;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 7px;
+      }
+      .field input,
+      .field select {
+        width: 100%;
+        min-width: 0;
+        background: #071015;
+        color: white;
+        border: 1px solid #243943;
+        border-radius: 6px;
+        padding: 12px 13px;
+        outline: none;
+      }
+      .field input:focus,
+      .field select:focus {
+        border-color: var(--cyan);
+        box-shadow: 0 0 0 3px rgba(9, 200, 236, 0.07);
+      }
+      .field select option {
+        background: #081116;
+      }
+      .results {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        background: #050c10;
+        border: 1px solid #20343d;
+        border-radius: 8px;
+        margin-top: 22px;
+        padding: 20px 8px;
+        text-align: center;
+        gap: 6px;
+      }
+      .result-value {
+        color: var(--cyan);
+        font-size: clamp(17px, 2vw, 24px);
+        font-weight: 800;
+        overflow-wrap: anywhere;
+      }
+      .result-label {
+        font-size: 10px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .note {
+        border-top: 1px solid #203039;
+        margin-top: 22px;
+        padding-top: 17px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .note strong {
+        color: var(--cyan);
+      }
+
+      /* SESSION CLOCK */
+      .clock-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-bottom: 24px;
+      }
+      .clock-top h3 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .clock-time {
+        color: var(--cyan);
+        font-size: 14px;
+      }
+      .sessions {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 17px;
+      }
+      .session {
+        background: #09141a;
+        border: 1px solid #1b3039;
+        border-radius: 9px;
+        padding: 22px;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+      }
+      .session.open {
+        border-color: rgba(9, 200, 236, 0.7);
+        background: linear-gradient(140deg, #0c2028, #09141a);
+      }
+      .session:hover {
+        transform: translateY(-3px);
+      }
+      .session-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      .session-name {
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .status {
+        color: var(--muted);
+        font-size: 9px;
+        letter-spacing: 1px;
+        font-weight: 700;
+      }
+      .open .status {
+        color: var(--cyan);
+      }
+      .dot {
+        display: inline-block;
+        width: 7px;
+        height: 7px;
+        background: #65747c;
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+      }
+      .open .dot {
+        background: var(--cyan);
+        box-shadow: 0 0 10px var(--cyan);
+      }
+      .session-time {
+        font-size: 13px;
+        color: var(--cyan);
+        margin: 12px 0;
+      }
+      .session p {
+        color: var(--muted);
+        font-size: 12px;
+        margin: 0;
+      }
+      .clock-foot {
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 22px;
+      }
+
+      /* RISK REWARD */
+      .rr-fields {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .rr-results {
+        margin-top: 23px;
+        padding: 24px 14px;
+        border: 1px solid #20343d;
+        border-radius: 9px;
+        background: #050c10;
+      }
+      .rr-values {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        text-align: center;
+        gap: 8px;
+      }
+      .rr-number {
+        font-size: clamp(17px, 2vw, 24px);
+        font-weight: 800;
+        overflow-wrap: anywhere;
+      }
+      .rr-number.cyan {
+        color: var(--cyan);
+      }
+      .rr-label {
+        color: var(--muted);
+        font-size: 10px;
+      }
+      .warning {
+        width: fit-content;
+        max-width: 100%;
+        margin: 18px auto 0;
+        padding: 7px 12px;
+        border-radius: 20px;
+        font-size: 10px;
+        text-align: center;
+        color: #f5cb82;
+        background: rgba(245, 203, 130, 0.08);
+        border: 1px solid rgba(245, 203, 130, 0.25);
+      }
+      .warning.good {
+        color: var(--cyan);
+        border-color: var(--border);
+        background: rgba(9, 200, 236, 0.07);
+      }
+
+      /* FOOTER */
+      .footer {
+        border-top: 1px solid var(--border);
+        padding: 28px 0;
+        color: var(--muted);
+        font-size: 11px;
+      }
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .footer-links {
+        display: flex;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .footer-links a:hover {
+        color: var(--cyan);
+      }
+
+      @media (max-width: 800px) {
+        .grid-two {
+          grid-template-columns: 1fr;
+        }
+        .sessions {
+          grid-template-columns: 1fr;
+        }
+        .session {
+          padding: 18px;
+        }
+        .hero {
+          padding: 70px 0 48px;
+        }
+        .section {
+          padding: 48px 0;
+        }
+      }
+      @media (max-width: 620px) {
+        .nav-inner {
+          min-height: 64px;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        .nav-cta {
+          display: none;
+        }
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          right: 0;
+          padding: 20px 5%;
+          background: #050b0f;
+          border-bottom: 1px solid var(--border);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+        .nav-links.show {
+          display: flex;
+        }
+        .hero h1 {
+          letter-spacing: -1px;
+        }
+        .card {
+          padding: 19px;
+        }
+        .fields {
+          gap: 14px 10px;
+        }
+        .field input,
+        .field select {
+          padding: 11px 9px;
+          font-size: 13px;
+        }
+        .rr-fields {
+          grid-template-columns: 1fr;
+        }
+        .results {
+          padding: 17px 4px;
+        }
+        .result-label,
+        .rr-label {
+          font-size: 9px;
+        }
+      }
+      @media (max-width: 360px) {
+        .fields {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="navbar">
+      <div class="container nav-inner">
+        <a href="index2.html" class="logo">UGFX<span>LAB</span></a>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="index2.html">Home</a>
+          <a href="index2.html#about">About</a>
+          <a href="index2.html#community">Community</a>
+          <a href="index2.html#journey">The Lab</a>
+          <a href="#tools" class="active">Free Tools</a>
+          <a href="index2.html#contact">Contact</a>
+        </nav>
+
+        <a href="index2.html#community" class="nav-cta">
+          Join Our Community ↗
+        </a>
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Toggle navigation"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <div class="eyebrow">Your Trading Toolkit</div>
+          <h1>
+            Trade Smarter.<br /><span class="accent">Manage Your Risk.</span>
+          </h1>
+          <p>
+            Practical trading tools to help you plan every trade with clarity.
+            Calculate your position size, evaluate risk-to-reward, and track
+            your favourite Forex sessions.
+          </p>
+          <div class="hero-actions">
+            <a href="#tools" class="btn">EXPLORE FREE TOOLS ↘</a>
+            <a href="#sessions" class="btn btn-outline">VIEW MARKET SESSIONS</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOREX SESSION CLOCK -->
+      <section class="section section-alt" id="sessions">
+        <div class="container">
+          <div class="card">
+            <div class="clock-top">
+              <h3><span class="accent">◷</span> Forex Session Clock</h3>
+              <div class="clock-time" id="eastTime">--:--:-- EAT</div>
+            </div>
+
+            <div class="sessions">
+              <article class="session" id="asiaSession">
+                <div class="session-head">
+                  <div class="session-name"><span class="dot"></span>Asia</div>
+                  <span class="status">CLOSED</span>
+                </div>
+                <div class="session-time">03:00 – 08:00 EAT</div>
+                <p>
+                  Range formation and potential levels for the London session.
+                </p>
+              </article>
+
+              <article class="session" id="londonSession">
+                <div class="session-head">
+                  <div class="session-name">
+                    <span class="dot"></span>London
+                  </div>
+                  <span class="status">CLOSED</span>
+                </div>
+                <div class="session-time">10:00 – 13:00 EAT</div>
+                <p>Potential volatility in GBP and EUR pairs.</p>
+              </article>
+
+              <article class="session" id="nySession">
+                <div class="session-head">
+                  <div class="session-name">
+                    <span class="dot"></span>New York
+                  </div>
+                  <span class="status">CLOSED</span>
+                </div>
+                <div class="session-time">15:30 – 19:00 EAT</div>
+                <p>USD pairs and gold during the selected session window.</p>
+              </article>
+            </div>
+
+            <p class="clock-foot">
+              All times use East Africa Time (EAT, UTC+3). Session windows are
+              configurable reference periods, not guarantees of volatility.
+              Forex trading is generally closed on weekends.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CALCULATORS -->
+      <section class="section" id="tools">
+        <div class="container">
+          <div class="section-heading">
+            <div class="eyebrow">Free Trading Tools</div>
+            <h2>Trading Tools <span class="accent">& Resources</span></h2>
+            <p>
+              No sign-up, no cost. Plan your trade and understand the numbers
+              before entering the market.
+            </p>
+          </div>
+
+          <div class="grid-two">
+            <!-- LOT SIZE CALCULATOR -->
+            <section class="card">
+              <h3 class="card-title">
+                <span class="card-icon">▦</span> Lot Size Calculator
+              </h3>
+
+              <div class="fields">
+                <div class="field">
+                  <label for="balance">Account Balance (USD)</label>
+                  <input
+                    id="balance"
+                    type="number"
+                    min="0"
+                    step="any"
+                    value="993"
+                  />
+                </div>
+                <div class="field">
+                  <label for="risk">Risk Per Trade (USD)</label>
+                  <input id="risk" type="number" min="0" step="any" value="5" />
+                </div>
+                <div class="field">
+                  <label for="stopPips">Stop Loss (pips)</label>
+                  <input
+                    id="stopPips"
+                    type="number"
+                    min="0"
+                    step="any"
+                    value="30"
+                  />
+                </div>
+                <div class="field">
+                  <label for="pair">Trading Instrument</label>
+                  <select id="pair">
+                    <option value="1">XAUUSD (Gold) — $1/pip/lot*</option>
+                    <option value="10">EURUSD — $10/pip/lot*</option>
+                    <option value="10">GBPUSD — $10/pip/lot*</option>
+                    <option value="10">AUDUSD — $10/pip/lot*</option>
+                    <option value="10">NZDUSD — $10/pip/lot*</option>
+                    <option value="9">USDJPY — Approx. $9/pip/lot*</option>
+                    <option value="1">Custom — $1/pip/lot*</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="pipValue">Pip Value per Lot (USD)</label>
+                  <input
+                    id="pipValue"
+                    type="number"
+                    min="0"
+                    step="any"
+                    value="1"
+                  />
+                </div>
+              </div>
+
+              <div class="results">
+                <div>
+                  <div class="result-value" id="riskAmount">$5.00</div>
+                  <div class="result-label">Amount at Risk</div>
+                </div>
+                <div>
+                  <div class="result-value" id="lotSize">0.17</div>
+                  <div class="result-label">Calculated Lot Size</div>
+                </div>
+                <div>
+                  <div class="result-value" id="riskPercent">0.50%</div>
+                  <div class="result-label">Of Your Balance</div>
+                </div>
+              </div>
+
+              <div class="note">
+                <strong>ⓘ Important:</strong> Pip values are estimates. Gold and
+                other CFDs can use different contract sizes and tick values
+                depending on your broker. Confirm the contract specifications
+                before trading. Calculated lot sizes are rounded down.
+              </div>
+            </section>
+
+            <!-- RISK REWARD CALCULATOR -->
+            <section class="card">
+              <h3 class="card-title">
+                <span class="card-icon">⚖</span> Risk / Reward Calculator
+              </h3>
+
+              <div class="fields rr-fields">
+                <div class="field">
+                  <label for="entry">Entry Price</label>
+                  <input id="entry" type="number" step="any" value="2263" />
+                </div>
+                <div class="field">
+                  <label for="stop">Stop Loss</label>
+                  <input id="stop" type="number" step="any" value="2326.5" />
+                </div>
+                <div class="field">
+                  <label for="target">Take Profit</label>
+                  <input id="target" type="number" step="any" value="2247" />
+                </div>
+              </div>
+
+              <div class="field" style="margin-top: 18px">
+                <label for="direction">Trade Direction</label>
+                <select id="direction">
+                  <option value="sell">Sell / Short</option>
+                  <option value="buy">Buy / Long</option>
+                </select>
+              </div>
+
+              <div class="rr-results">
+                <div class="rr-values">
+                  <div>
+                    <div class="rr-number" id="rrRisk">63.50</div>
+                    <div class="rr-label">Risk (to SL)</div>
+                  </div>
+                  <div>
+                    <div class="rr-number cyan" id="rrRatio">1 : 0.25</div>
+                    <div class="rr-label">Risk : Reward</div>
+                  </div>
+                  <div>
+                    <div class="rr-number" id="rrReward">16.00</div>
+                    <div class="rr-label">Reward (to TP)</div>
+                  </div>
+                </div>
+                <div class="warning" id="rrWarning">
+                  Check your entry, stop loss and target.
+                </div>
+              </div>
+
+              <div class="note">
+                <strong>ⓘ Remember:</strong> This calculator measures the price
+                distance between entry, stop loss and target. It does not
+                include spread, commission, slippage or position size. A
+                favourable ratio does not guarantee a profitable trade.
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <a href="index2.html" class="logo">UGFX<span>LAB</span></a>
+        <div>Trade with a plan. Manage risk responsibly.</div>
+        <div class="footer-links">
+          <a href="index2.html">Home</a>
+          <a href="#sessions">Sessions</a>
+          <a href="#tools">Free Tools</a>
+          <a href="index2.html#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* MOBILE NAVIGATION */
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      menuToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("show");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+      });
+
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navLinks.classList.remove("show");
+          menuToggle.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      /* LIVE EAST AFRICA TIME */
+      const timeFormatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Nairobi",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hourCycle: "h23",
+      });
+
+      const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Nairobi",
+        weekday: "short",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+
+      function updateSessionClock() {
+        const now = new Date();
+        const parts = new Intl.DateTimeFormat("en-GB", {
+          timeZone: "Africa/Nairobi",
+          hour: "2-digit",
+          minute: "2-digit",
+          hourCycle: "h23",
+        }).formatToParts(now);
+
+        const get = (type) => parts.find((p) => p.type === type).value;
+        const hour = Number(get("hour"));
+        const minute = Number(get("minute"));
+        const current = hour * 60 + minute;
+
+        document.getElementById("eastTime").textContent =
+          timeFormatter.format(now) + " EAT";
+
+        // Date in Nairobi is used to handle weekend closure correctly.
+        const dateParts = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Africa/Nairobi",
+          weekday: "short",
+        }).format(now);
+
+        const weekend = dateParts === "Sat" || dateParts === "Sun";
+
+        const sessions = [
+          { id: "asiaSession", start: 180, end: 480 },
+          { id: "londonSession", start: 600, end: 780 },
+          { id: "nySession", start: 930, end: 1140 },
+        ];
+
+        sessions.forEach((session) => {
+          const element = document.getElementById(session.id);
+          const isOpen =
+            !weekend && current >= session.start && current < session.end;
+
+          element.classList.toggle("open", isOpen);
+          element.querySelector(".status").textContent = weekend
+            ? "WEEKEND"
+            : isOpen
+              ? "OPEN NOW"
+              : "CLOSED";
+        });
+      }
+      updateSessionClock();
+      setInterval(updateSessionClock, 1000);
+
+      /* LOT SIZE CALCULATOR */
+      const balance = document.getElementById("balance");
+      const risk = document.getElementById("risk");
+      const stopPips = document.getElementById("stopPips");
+      const pair = document.getElementById("pair");
+      const pipValue = document.getElementById("pipValue");
+
+      pair.addEventListener("change", () => {
+        pipValue.value = pair.value;
+        calculateLot();
+      });
+
+      [balance, risk, stopPips, pipValue].forEach((input) => {
+        input.addEventListener("input", calculateLot);
+      });
+
+      function numberValue(id) {
+        return Number(document.getElementById(id).value);
+      }
+
+      function calculateLot() {
+        const account = numberValue("balance");
+        const riskAmount = numberValue("risk");
+        const sl = numberValue("stopPips");
+        const pip = numberValue("pipValue");
+
+        const valid = account > 0 && riskAmount >= 0 && sl > 0 && pip > 0;
+        const lot = valid ? riskAmount / (sl * pip) : NaN;
+        const roundedLot = Number.isFinite(lot)
+          ? Math.floor(lot * 100) / 100
+          : NaN;
+        const percent = account > 0 ? (riskAmount / account) * 100 : NaN;
+
+        document.getElementById("riskAmount").textContent =
+          riskAmount >= 0 && Number.isFinite(riskAmount)
+            ? "$" + riskAmount.toFixed(2)
+            : "—";
+
+        document.getElementById("lotSize").textContent = Number.isFinite(
+          roundedLot,
+        )
+          ? roundedLot.toFixed(2)
+          : "—";
+
+        document.getElementById("riskPercent").textContent = Number.isFinite(
+          percent,
+        )
+          ? percent.toFixed(2) + "%"
+          : "—";
+      }
+      calculateLot();
+
+      /* RISK / REWARD CALCULATOR */
+      const rrInputs = ["entry", "stop", "target", "direction"];
+
+      rrInputs.forEach((id) => {
+        document.getElementById(id).addEventListener("input", calculateRR);
+        document.getElementById(id).addEventListener("change", calculateRR);
+      });
+
+      function calculateRR() {
+        const entry = numberValue("entry");
+        const stop = numberValue("stop");
+        const target = numberValue("target");
+        const direction = document.getElementById("direction").value;
+
+        const validNumbers = [entry, stop, target].every(Number.isFinite);
+        const riskDistance = direction === "buy" ? entry - stop : stop - entry;
+        const rewardDistance =
+          direction === "buy" ? target - entry : entry - target;
+
+        const valid =
+          validNumbers &&
+          entry > 0 &&
+          stop > 0 &&
+          target > 0 &&
+          riskDistance > 0 &&
+          rewardDistance > 0;
+
+        const riskEl = document.getElementById("rrRisk");
+        const rewardEl = document.getElementById("rrReward");
+        const ratioEl = document.getElementById("rrRatio");
+        const warning = document.getElementById("rrWarning");
+
+        if (!valid) {
+          riskEl.textContent = "—";
+          rewardEl.textContent = "—";
+          ratioEl.textContent = "—";
+          warning.textContent =
+            "Invalid setup: check the entry, stop loss, target and direction.";
+          warning.className = "warning";
+          return;
+        }
+
+        const ratio = rewardDistance / riskDistance;
+
+        riskEl.textContent = riskDistance.toFixed(2);
+        rewardEl.textContent = rewardDistance.toFixed(2);
+        ratioEl.textContent = "1 : " + ratio.toFixed(2);
+
+        if (ratio < 1) {
+          warning.textContent =
+            "Below a 1:1 reward-to-risk ratio. Review your trade plan.";
+          warning.className = "warning";
+        } else if (ratio < 2) {
+          warning.textContent =
+            "Valid setup. Compare the ratio with your trading strategy.";
+          warning.className = "warning good";
+        } else {
+          warning.textContent =
+            "Reward-to-risk is 1:2 or higher. Risk management still matters.";
+          warning.className = "warning good";
+        }
+      }
+      calculateRR();
+    </script>
+  </body>
+</html>

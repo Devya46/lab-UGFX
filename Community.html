@@ -1,0 +1,5473 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community | UGFX LAB</title>
+    <link
+      rel="shortcut icon"
+      href="Photos/logo-Photoroom.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body></body>
+</html>
+
+<!-- ----- header---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB</title>
+    <link
+      rel="shortcut icon"
+      href="Photos/logo-Photoroom.png"
+      type="image/x-icon"
+    />
+    <!-- Google Font & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #02090e;
+        color: #ffffff;
+      }
+
+      /* ===== SCROLL LOCK (robust — works on iOS & desktop) ===== */
+      body.menu-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* ===== NAVBAR — professional, compact ===== */
+      .navbar {
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        background: #02090e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        height: 76px;
+        background: rgba(2, 9, 14, 0.96);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* ===== BRAND — tighter ===== */
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 240px;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 78px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-name {
+        margin-left: 11px;
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #f0f4f7;
+      }
+
+      .brand-name span {
+        color: #09c8ec;
+      }
+
+      /* ===== NAVIGATION — reduced font, balanced spacing ===== */
+      .nav-menu {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 38px;
+      }
+
+      .nav-link {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #eef2f5;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      /* Right angle arrow — pinned to the very right edge */
+      .nav-link .nav-arrow {
+        position: absolute;
+        right: -18px;
+        top: 50%;
+        transform: translateY(-50%) translateX(-4px);
+        font-size: 16px;
+        color: #09c8ec;
+        opacity: 0;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+        pointer-events: none;
+      }
+
+      .nav-link:hover {
+        color: #09c8ec;
+      }
+
+      /* .nav-link:hover .nav-arrow {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      } */
+
+      /* Active underline – slimmer & closer to text */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 26px;
+        height: 3px;
+        border-radius: 20px;
+        background: #09c8ec;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+
+      /* ===== JOIN BUTTON — compact, refined ===== */
+      .community-btn {
+        min-width: 190px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 18px;
+        background: #09c8ec;
+        color: #031017;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+        transition: all 0.25s ease;
+      }
+
+      .community-btn i {
+        font-size: 20px;
+      }
+
+      .community-btn:hover {
+        transform: translateY(-2px);
+        background: #1ad9f2;
+        box-shadow: 0 8px 25px rgba(11, 210, 237, 0.2);
+      }
+
+      /* ===== MOBILE TOGGLE ===== */
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      /* ===== MOBILE MENU ===== */
+      .mobile-menu {
+        display: none;
+      }
+
+      /* ===== TABLET (≤1250px) ===== */
+      @media (max-width: 1250px) {
+        .navbar {
+          padding: 0 3%;
+        }
+
+        .brand {
+          min-width: 200px;
+        }
+
+        .brand img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .brand-name {
+          font-size: 23px;
+          margin-left: 9px;
+        }
+
+        .nav-menu {
+          gap: 22px;
+        }
+
+        .nav-link {
+          font-size: 14px;
+        }
+
+        .nav-link .nav-arrow {
+          right: -14px;
+          font-size: 14px;
+        }
+
+        .nav-link::after {
+          bottom: 22px;
+          height: 3px;
+        }
+
+        .community-btn {
+          min-width: 200px;
+          height: 46px;
+          font-size: 14px;
+          padding: 0 18px;
+        }
+
+        .community-btn i {
+          font-size: 18px;
+        }
+      }
+
+      /* ===== MOBILE (≤1050px) ===== */
+      @media (max-width: 1050px) {
+        .navbar {
+          height: 78px;
+        }
+
+        .navbar.scrolled {
+          height: 62px;
+        }
+
+        .nav-menu,
+        .community-btn {
+          display: none;
+        }
+
+        .brand {
+          min-width: auto;
+        }
+
+        .brand img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .brand-name {
+          font-size: 22px;
+          letter-spacing: -0.8px;
+          margin-left: 8px;
+        }
+
+        .menu-toggle {
+          display: flex;
+          margin-left: auto;
+        }
+
+        /* Mobile dropdown */
+        .mobile-menu {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          width: 100%;
+          padding: 18px 6% 28px;
+          background: #02090e;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 999;
+          transform: translateY(-120%);
+          transition: transform 0.35s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+          box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.6);
+          /* Keep menu from scrolling the page behind it */
+          overscroll-behavior: contain;
+          max-height: calc(100vh - 78px);
+          overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+        }
+
+        .mobile-menu a {
+          color: #ffffff;
+          text-decoration: none;
+          padding: 14px 4px;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        /* Icons appear ONLY in the mobile menu */
+        .mobile-menu a .m-icon {
+          width: 18px;
+          text-align: center;
+          color: #7a8a94;
+          font-size: 14px;
+        }
+
+        /* Angle arrow pushed to the far right of each mobile link */
+        .mobile-menu a .m-arrow {
+          margin-left: auto;
+          color: #09c8ec;
+          font-size: 16px;
+        }
+
+        .mobile-menu a:hover {
+          color: #09c8ec;
+        }
+
+        .mobile-menu a:hover .m-icon {
+          color: #09c8ec;
+        }
+
+        .mobile-community-btn {
+          margin-top: 14px;
+          background: #09c8ec;
+          color: #021017 !important;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 700 !important;
+          border: none !important;
+          padding: 14px 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 15px;
+        }
+
+        .mobile-community-btn .m-icon {
+          color: #021017;
+        }
+      }
+
+      /* ===== SMALL MOBILE (≤550px) ===== */
+      @media (max-width: 550px) {
+        .navbar {
+          padding: 0 16px;
+        }
+
+        .brand img {
+          width: 110px;
+          height: 55px;
+        }
+
+        .brand-name {
+          font-size: 19px;
+          letter-spacing: -0.5px;
+          margin-left: 7px;
+        }
+
+        .mobile-menu {
+          top: 78px;
+          padding: 16px 5% 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="navbar" id="navbar">
+      <!-- LOGO + NAME -->
+      <a href="#" class="brand">
+        <img src="Photos/logo-Photoroom-1.png" alt="UGFXLAB Logo" />
+        <!-- <span class="brand-name">UGFX<span>LAB</span></span> -->
+      </a>
+
+      <!-- DESKTOP NAV (text only — no icons) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">
+          <span>Home</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#about-founder" class="nav-link">
+          <span>About</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="ComingSoon.html" class="nav-link">
+          <span>Community</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="ComingSoon.html" class="nav-link">
+          <span>The LAB</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="ComingSoon.html" class="nav-link">
+          <span>Free Tools</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#student-results" class="nav-link">
+          <span>Results</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#ContactUs" class="nav-link">
+          <span>Contact</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+      </nav>
+
+      <!-- JOIN BUTTON -->
+      <a href="https://t.me/ugfxlab" class="community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        <span>Join Free Community</span>
+      </a>
+
+      <!-- HAMBURGER -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MOBILE NAV (with icons) -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">
+        <i class="fa-solid fa-house m-icon"></i>
+        <span>Home</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#about-founder">
+        <i class="fa-solid fa-circle-info m-icon"></i>
+        <span>About</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-users m-icon"></i>
+        <span>Community</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-flask m-icon"></i>
+        <span>THE LAB</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-toolbox m-icon"></i>
+        <span>Free Tools</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#student-results">
+        <i class="fa-solid fa-chart-line m-icon"></i>
+        <span>Results</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#ContactUs">
+        <i class="fa-solid fa-envelope m-icon"></i>
+        <span>Contact</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="https://t.me/ugfxlab" class="mobile-community-btn">
+        <i class="fa-brands fa-telegram m-icon"></i>
+        &nbsp; Join Free Community
+      </a>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      (function () {
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle — with robust scroll lock
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        let scrollPosition = 0;
+
+        function lockScroll() {
+          // Remember current scroll position
+          scrollPosition =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+          // Prevent the page from shifting horizontally (scrollbar width)
+          const scrollbarWidth =
+            window.innerWidth - document.documentElement.clientWidth;
+          document.body.style.paddingRight = scrollbarWidth + "px";
+
+          // Freeze the page at the current position
+          document.body.style.top = -scrollPosition + "px";
+          document.body.classList.add("menu-open");
+        }
+
+        function unlockScroll() {
+          document.body.classList.remove("menu-open");
+          document.body.style.top = "";
+          document.body.style.paddingRight = "";
+
+          // Restore scroll position without animation jump
+          window.scrollTo(0, scrollPosition);
+        }
+
+        menuToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          const isOpen = mobileMenu.classList.toggle("open");
+          if (isOpen) {
+            lockScroll();
+          } else {
+            unlockScroll();
+          }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll(".mobile-menu a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+            unlockScroll();
+          });
+        });
+
+        // Active link switching (desktop)
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            navLinks.forEach(function (item) {
+              item.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- floating icons---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating social · icons only</title>
+    <!-- Font Awesome 6 (free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* minimal reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .body-icons {
+        background: #0b0f14; /* deep dark background */
+        /* min-height: 100vh; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, sans-serif;
+      }
+
+      /* floating wrapper – fixed bottom right */
+      .floating-social {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      /* toggle button (main circle) */
+      .social-toggle {
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: #004b9e;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.9rem;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6);
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        outline: none;
+      }
+
+      .social-toggle:hover {
+        background: #2c3e52;
+        transform: scale(1.04);
+      }
+
+      .social-toggle:active {
+        transform: scale(0.96);
+      }
+
+      /* menu container – appears above the toggle */
+      .social-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.9);
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        pointer-events: none;
+        /* keep it above the button in stacking */
+        order: -1; /* ensures it appears before toggle in flex column */
+      }
+
+      /* when active */
+      .floating-social.active .social-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      /* individual icon buttons – circular */
+      .social-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        /* /* background: #1e2a3a; */
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .social-icon.telegram {
+        background: #26a5e4;
+        color: white;
+      }
+
+      /* hover effects per brand */
+      .social-icon.telegram:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(38, 165, 228, 0.35);
+      }
+      .social-icon.whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .social-icon.whatsapp:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(37, 211, 102, 0.35);
+      }
+
+      /* icon colours inside (when not hovered) */
+      /* .social-icon.telegram i {
+        color: #26a5e4;
+        transition: color 0.2s;
+      }
+
+      .social-icon.whatsapp i {
+        color: #25d366;
+        transition: color 0.2s;
+      } */
+
+      /* on hover, the icon inside becomes white (since bg becomes brand colour) */
+      /* .social-icon.telegram:hover i,
+      .social-icon.whatsapp:hover i {
+        color: #ffffff;
+      } */
+
+      /* small mobile adjust */
+      @media (max-width: 500px) {
+        .floating-social {
+          bottom: 1.2rem;
+          right: 1.2rem;
+          gap: 0.6rem;
+        }
+
+        .social-toggle {
+          width: 56px;
+          height: 56px;
+          font-size: 1.7rem;
+        }
+
+        .social-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="body-icons">
+      <!-- floating widget: toggle + icons (no text) -->
+      <div class="floating-social" id="floatingSocial">
+        <!-- social menu (appears above due to order: -1) -->
+        <div class="social-menu" id="socialMenu">
+          <!-- Telegram channel -->
+          <a
+            href="https://t.me/fxlab_admin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon telegram"
+            aria-label="Telegram channel"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <!-- WhatsApp link -->
+          <a
+            href="https://wa.me/message/A6ENZ2W5UUSJK1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon whatsapp"
+            aria-label="WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+
+        <!-- main toggle button -->
+        <button
+          class="social-toggle"
+          id="toggleBtn"
+          aria-label="Social media menu"
+          aria-expanded="false"
+        >
+          <!-- <i class="fas fa-share-alt"></i> -->
+          <i class="fa-solid fa-comment"></i>
+        </button>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const container = document.getElementById("floatingSocial");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const socialMenu = document.getElementById("socialMenu");
+
+        // Toggle active class (menu appears above)
+        function toggleMenu() {
+          const isActive = container.classList.toggle("active");
+          toggleBtn.setAttribute("aria-expanded", isActive);
+        }
+
+        // Click on main button
+        toggleBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (e) {
+          if (!container.contains(e.target)) {
+            if (container.classList.contains("active")) {
+              container.classList.remove("active");
+              toggleBtn.setAttribute("aria-expanded", "false");
+            }
+          }
+        });
+
+        // Stop propagation on menu clicks (so clicking the icons doesn't close before navigation)
+        socialMenu.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        // close with Escape
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && container.classList.contains("active")) {
+            container.classList.remove("active");
+            toggleBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- --- Hero ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE COMMUNITY | UGFXLAB</title>
+
+    <!-- Matching geometric font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --lab-black: #030303;
+        --lab-white: #f8f8f8;
+        --lab-cyan: #09c8ec;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--lab-black);
+        color: var(--lab-white);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* HERO */
+      .lab-hero {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+        min-height: 768px;
+        max-height: 950px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #030303;
+
+        /* Replace with your background image path */
+        background-image: url("Photos/Waves.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      /* Darken the background and its center */
+      .lab-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(
+            90deg,
+            #0303032b 0%,
+            rgb(3 3 3 / 32%) 18%,
+            rgba(3, 3, 3, 0.15) 50%,
+            rgb(3 3 3 / 7%) 82%,
+            #0303036e 100%
+          ),
+          linear-gradient(180deg, rgb(0 0 0 / 51%) 0%, rgb(0 0 0 / 83%) 100%);
+      }
+
+      .lab-hero__center-mask {
+        position: absolute;
+        z-index: -1;
+        inset: 15% 17%;
+        background: radial-gradient(
+          ellipse at center,
+          #030303 0%,
+          rgba(3, 3, 3, 0.99) 55%,
+          rgb(3 3 3 / 0%) 76%,
+          transparent 100%
+        );
+        pointer-events: none;
+        border-radius: 33rem;
+      }
+
+      .lab-hero__content {
+        width: min(100% - 40px, 1120px);
+        margin: 0 auto;
+        text-align: center;
+        padding: 60px 0;
+        position: relative;
+        z-index: 2;
+        animation: labFadeIn 1s ease both;
+      }
+
+      /* MAIN TITLE */
+      .lab-hero__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        font-size: clamp(66px, 6vw, 150px);
+        line-height: 0.95;
+        font-weight: 800;
+        letter-spacing: -5px;
+        white-space: nowrap;
+      }
+
+      .lab-hero__title-white {
+        color: #f8f8f8;
+      }
+
+      .lab-hero__title-cyan {
+        color: var(--lab-cyan);
+      }
+
+      /* COMMUNITY LABEL */
+      .lab-hero__label {
+        margin-top: 12px;
+        font-size: clamp(16px, 2.05vw, 36px);
+        font-weight: 400;
+        letter-spacing: 0.62em;
+        padding-left: 0.62em;
+        line-height: 1.4;
+        color: #f6f6f6;
+      }
+
+      /* BADGE */
+      .lab-hero__coming-soon {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 34px;
+        padding: 10px 22px;
+        border: 1px solid rgba(9, 200, 236, 0.55);
+        border-radius: 100px;
+        background: rgba(9, 200, 236, 0.08);
+        color: var(--lab-cyan);
+        font-size: clamp(11px, 1vw, 11px);
+        font-weight: 700;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        box-shadow: 0 0 20px rgba(9, 200, 236, 0.12);
+      }
+
+      .lab-hero__coming-soon::before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--lab-cyan);
+        box-shadow: 0 0 10px var(--lab-cyan);
+        animation: labPulse 1.8s ease-in-out infinite;
+      }
+
+      @keyframes labPulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.45;
+          transform: scale(0.75);
+        }
+      }
+
+      /* CYAN DIVIDER */
+      .lab-hero__divider {
+        width: 140px;
+        height: 2px;
+        margin: 22px auto 24px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--lab-cyan),
+          transparent
+        );
+        box-shadow: 0 0 12px rgba(9, 200, 236, 0.45);
+      }
+
+      /* DESCRIPTION */
+      .lab-hero__description {
+        max-width: 800px !important;
+        margin: 0 auto;
+        font-size: clamp(15px, 1.2vw, 27px);
+        font-weight: 400;
+        line-height: 1.48;
+        letter-spacing: -0.35px;
+        color: #f3f3f3;
+      }
+
+      .lab-hero__highlight {
+        color: var(--lab-cyan);
+        font-weight: 700;
+      }
+
+      /* NOTICE */
+      .lab-hero__notice {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        max-width: 100%;
+        margin-top: 34px;
+        padding: 18px 32px;
+        border: 1px solid rgba(9, 200, 236, 0.55);
+        border-radius: 100px;
+        background: rgba(5, 12, 15, 0.78);
+        box-shadow: 0 0 25px rgba(9, 200, 236, 0.035);
+        text-align: left;
+        flex-wrap: wrap;
+      }
+
+      .lab-hero__calendar {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        color: var(--lab-cyan);
+      }
+
+      .lab-hero__notice-divider {
+        align-self: stretch;
+        width: 1px;
+        min-height: 48px;
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      .lab-hero__notice-text {
+        font-size: clamp(13px, 1.15vw, 22px);
+        line-height: 1.55;
+        font-weight: 400;
+        color: #f5f5f5;
+      }
+
+      .lab-hero__notice-highlight {
+        display: block;
+        color: var(--lab-cyan);
+        font-weight: 700;
+      }
+
+      /* COMMUNITY TIERS ROW (same sizing as timer blocks) */
+      .lab-hero__timer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 42px;
+        flex-wrap: wrap;
+      }
+
+      .lab-hero__timer-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 140px;
+        padding: 10px 19px;
+        border: 1px solid rgba(9, 200, 236, 0.35);
+        border-radius: 14px;
+        background: rgba(5, 12, 15, 0.85);
+        box-shadow: 0 0 18px rgba(9, 200, 236, 0.06);
+      }
+
+      .lab-hero__timer-number {
+        font-size: clamp(24px, 2.8vw, 25px);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        color: var(--lab-cyan);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+
+      .lab-hero__timer-label {
+        font-size: clamp(9px, 0.8vw, 12px);
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: #d9d9d9;
+        margin-top: 6px;
+      }
+
+      .lab-hero__timer-colon {
+        font-size: clamp(22px, 2.4vw, 36px);
+        font-weight: 700;
+        color: rgba(9, 200, 236, 0.55);
+        line-height: 1;
+        padding-bottom: 18px;
+      }
+
+      /* CTA */
+      .lab-hero__cta-wrap {
+        margin-top: 30px;
+      }
+
+      .lab-hero__cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        padding: 13px 54px;
+        border: none;
+        border-radius: 8px;
+        background: var(--lab-cyan);
+        color: #030303;
+        font-family: inherit;
+        font-size: clamp(14px, 1.2vw, 15px);
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        box-shadow:
+          0 0 0 1px rgba(9, 200, 236, 0.4),
+          0 8px 30px rgba(9, 200, 236, 0.35);
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          background 0.25s ease;
+      }
+
+      .lab-hero__cta:hover,
+      .lab-hero__cta:focus-visible {
+        background: #2ad6f5;
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 0 1px rgba(9, 200, 236, 0.6),
+          0 12px 38px rgba(9, 200, 236, 0.5);
+        outline: none;
+      }
+
+      .lab-hero__cta:active {
+        transform: translateY(0);
+      }
+
+      .lab-hero__cta svg {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        transition: transform 0.25s ease;
+      }
+
+      .lab-hero__cta:hover svg,
+      .lab-hero__cta:focus-visible svg {
+        transform: translateX(4px);
+      }
+
+      @keyframes labFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* TABLET */
+      @media (max-width: 768px) {
+        .lab-hero {
+          min-height: 650px;
+          height: auto;
+          max-height: none;
+          background-position: center;
+        }
+
+        .lab-hero__content {
+          width: calc(100% - 32px);
+          padding: 90px 0;
+        }
+
+        .lab-hero__title {
+          gap: 12px;
+          font-size: clamp(58px, 12vw, 92px);
+          letter-spacing: -3px;
+        }
+
+        .lab-hero__label {
+          margin-top: 14px;
+          font-size: clamp(14px, 3vw, 22px);
+          letter-spacing: 0.42em;
+          padding-left: 0.42em;
+        }
+
+        .lab-hero__coming-soon {
+          margin-top: 18px;
+          padding: 9px 20px;
+          font-size: 11px;
+          letter-spacing: 0.26em;
+        }
+
+        .lab-hero__divider {
+          margin: 22px auto;
+          width: 100px;
+        }
+
+        .lab-hero__description {
+          max-width: 590px;
+          font-size: 17px;
+          line-height: 1.7;
+        }
+
+        .lab-hero__notice {
+          margin-top: 30px;
+          padding: 16px 22px;
+          gap: 16px;
+        }
+
+        .lab-hero__calendar {
+          width: 36px;
+          height: 36px;
+          flex-basis: 36px;
+        }
+
+        .lab-hero__notice-text {
+          font-size: 14px;
+        }
+
+        .lab-hero__timer-block {
+          min-width: 62px;
+          padding: 8px 10px;
+        }
+
+        .lab-hero__timer-number {
+          font-size: 20px;
+        }
+
+        .lab-hero__timer-colon {
+          font-size: 20px;
+          padding-bottom: 14px;
+        }
+
+        .lab-hero__cta {
+          padding: 16px 42px;
+        }
+      }
+
+      /* MOBILE */
+      @media (max-width: 480px) {
+        .lab-hero {
+          min-height: 620px;
+        }
+
+        .lab-hero__content {
+          width: calc(100% - 28px);
+          padding: 80px 0;
+        }
+
+        .lab-hero__title {
+          gap: 8px;
+          font-size: clamp(48px, 13.5vw, 65px);
+          letter-spacing: -2.5px;
+        }
+
+        .lab-hero__label {
+          margin-top: 12px;
+          font-size: 13px;
+          letter-spacing: 0.34em;
+          padding-left: 0.34em;
+        }
+
+        .lab-hero__coming-soon {
+          margin-top: 16px;
+          padding: 8px 16px;
+          font-size: 9px;
+          letter-spacing: 0.22em;
+          gap: 8px;
+        }
+
+        .lab-hero__coming-soon::before {
+          width: 6px;
+          height: 6px;
+        }
+
+        .lab-hero__divider {
+          width: 80px;
+          margin: 20px auto;
+        }
+
+        .lab-hero__description {
+          font-size: 14px;
+          line-height: 1.8;
+          padding: 0 5px;
+        }
+
+        .lab-hero__notice {
+          width: 100%;
+          gap: 12px;
+          padding: 15px 13px;
+          margin-top: 28px;
+          border-radius: 22px;
+        }
+
+        .lab-hero__calendar {
+          width: 30px;
+          height: 30px;
+          flex-basis: 30px;
+        }
+
+        .lab-hero__notice-divider {
+          min-height: 48px;
+        }
+
+        .lab-hero__notice-text {
+          font-size: 11px;
+          line-height: 1.8;
+        }
+
+        .lab-hero__center-mask {
+          inset: 12% 0;
+        }
+
+        .lab-hero__timer {
+          gap: 6px;
+          margin-top: 16px;
+        }
+
+        .lab-hero__timer-block {
+          min-width: 52px;
+          padding: 6px 8px;
+          border-radius: 10px;
+        }
+
+        .lab-hero__timer-number {
+          font-size: 20px;
+          letter-spacing: -0.5px;
+        }
+
+        .lab-hero__timer-label {
+          font-size: 7px;
+          letter-spacing: 0.16em;
+          margin-top: 4px;
+        }
+
+        .lab-hero__timer-colon {
+          font-size: 16px;
+          padding-bottom: 14px;
+        }
+
+        .lab-hero__cta-wrap {
+          margin-top: 26px;
+        }
+
+        .lab-hero__cta {
+          width: 100%;
+          max-width: 320px;
+          padding: 16px 28px;
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          gap: 10px;
+        }
+
+        .lab-hero__cta svg {
+          width: 15px;
+          height: 15px;
+          flex-basis: 15px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .lab-hero__content {
+          animation: none;
+        }
+
+        .lab-hero__coming-soon::before {
+          animation: none;
+        }
+
+        .lab-hero__cta {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="lab-hero">
+      <div class="lab-hero__center-mask" aria-hidden="true"></div>
+
+      <div class="lab-hero__content">
+        <!-- BADGE -->
+        <div class="lab-hero__coming-soon">Free &amp; Premium Access</div>
+
+        <h1 class="lab-hero__title">
+          <span class="lab-hero__title-white">FXLAB</span>
+          <span class="lab-hero__title-cyan">TRADES</span>
+        </h1>
+
+        <p class="lab-hero__label">UGFXLAB</p>
+
+        <div class="lab-hero__divider"></div>
+
+        <p class="lab-hero__description">
+          Two ways to follow our work —
+          <span class="lab-hero__highlight">free market insights</span>
+          and a premium community with weekly setups and trade management.
+        </p>
+
+        <!-- COMMUNITY TIERS -->
+        <div class="lab-hero__timer" aria-live="polite">
+          <div class="lab-hero__timer-block">
+            <span class="lab-hero__timer-number">FREE</span>
+            <span class="lab-hero__timer-label">UGFXLAB</span>
+          </div>
+          <span class="lab-hero__timer-colon" aria-hidden="true">·</span>
+          <div class="lab-hero__timer-block">
+            <span class="lab-hero__timer-number">PREMIUM</span>
+            <span class="lab-hero__timer-label">FxlabTrades</span>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="lab-hero__cta-wrap">
+          <a
+            class="lab-hero__cta"
+            href="https://t.me/ugfxlab"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Join Free Channel
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 12H19M19 12L13 6M19 12L13 18"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Optional: subtle parallax effect for the background.
+      (() => {
+        const hero = document.querySelector(".lab-hero");
+
+        if (
+          !hero ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          return;
+        }
+
+        let ticking = false;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (ticking) return;
+
+            ticking = true;
+
+            window.requestAnimationFrame(() => {
+              const rect = hero.getBoundingClientRect();
+
+              if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                const offset = rect.top * -0.04;
+                hero.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+              }
+
+              ticking = false;
+            });
+          },
+          { passive: true },
+        );
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- --- Stats ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Real Experience</title>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+      :root {
+        --cyan: #09c8ec;
+        --black: #030506;
+        --white: #f7f9fb;
+        --muted: #b7c0c8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: var(--black);
+        color: var(--white);
+      }
+
+      /* FULL-WIDTH BACKGROUND */
+      .experience-section {
+        position: relative;
+        width: 100%;
+        min-height: 400px; /* reduced from 512px */
+        overflow: hidden;
+        isolation: isolate;
+        background-color: #030506;
+        background-image:
+          linear-gradient(
+            90deg,
+            rgb(0 0 0) 0%,
+            rgb(0 0 0 / 98%) 38%,
+            rgb(0 0 0 / 80%) 64%,
+            rgba(2, 5, 7, 0.3) 100%
+          ),
+          linear-gradient(0deg, rgba(2, 5, 7, 0.7), transparent 60%);
+        background-size: cover;
+        background-position: center 48%;
+      }
+
+      .experience-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background: radial-gradient(
+          ellipse at 82% 70%,
+          rgba(9, 200, 236, 0.13),
+          transparent 36%
+        );
+      }
+
+      .experience-container {
+        width: min(1100px, calc(100% - 48px)); /* slightly narrower */
+        min-height: 398px; /* reduced */
+        margin: 0 auto;
+        padding: 77px 0 66px; /* reduced from 66/95 */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 52px; /* reduced from 80 */
+      }
+
+      .experience-left {
+        min-width: 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .eyebrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 14px; /* reduced */
+        margin-bottom: 16px; /* reduced from 22 */
+        color: var(--cyan);
+        font-size: 11px; /* reduced from 12 */
+        font-weight: 700;
+        letter-spacing: 3.4px; /* slightly tighter */
+        text-transform: uppercase;
+      }
+
+      .eyebrow::after {
+        content: "";
+        width: 56px; /* reduced from 75 */
+        height: 1px;
+        background: linear-gradient(90deg, var(--cyan), transparent);
+      }
+
+      .experience-title {
+        max-width: 640px; /* reduced from 700 */
+        margin: 0 auto;
+        font-size: clamp(28px, 3.1vw, 40px); /* reduced from 34–46 */
+        line-height: 1.15;
+        font-weight: 600;
+        letter-spacing: -1.5px;
+        color: #f8fafc;
+      }
+
+      .experience-title span {
+        display: block;
+      }
+
+      .title-divider {
+        position: relative;
+        width: 100%;
+        max-width: 640px; /* match title */
+        height: 2px;
+        margin: 18px auto 24px; /* reduced from 22/30 */
+        border: none;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 200, 255, 0.02) 0%,
+          rgba(0, 200, 255, 0.12) 18%,
+          rgba(0, 200, 255, 0.42) 38%,
+          rgba(0, 200, 255, 0.12) 65%,
+          rgba(0, 200, 255, 0.02) 100%
+        );
+      }
+
+      .title-divider::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 0px;
+        width: 280px; /* reduced from 324 */
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00d9ff 35%,
+          #8af4ff 50%,
+          #00cfff 70%,
+          transparent
+        );
+      }
+
+      .experience-stats {
+        display: grid;
+        grid-template-columns: 1fr 1.25fr 1.35fr 0.85fr;
+        align-items: stretch;
+        text-align: center;
+        max-width: 900px; /* reduced from 1000 */
+        margin: 0 auto;
+      }
+
+      .stat {
+        min-width: 0;
+        padding: 1px 14px 0 0; /* reduced from 17 */
+      }
+
+      .stat + .stat {
+        border-left: 1px solid rgba(9, 200, 236, 0.4);
+        padding-left: 16px; /* reduced from 19 */
+      }
+
+      .stat-number {
+        margin-bottom: 10px; /* reduced from 13 */
+        color: var(--cyan);
+        font-size: 38px; /* reduced from 48 */
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+        white-space: nowrap;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .stat-label {
+        max-width: 140px; /* reduced from 150 */
+        margin: 0 auto;
+        color: #c0c7cd;
+        font-size: 12px; /* reduced from 13 */
+        line-height: 1.6;
+        font-weight: 400;
+      }
+
+      /* GLASS TESTIMONIAL — centered & centered text */
+      .experience-right {
+        position: relative;
+        min-width: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .testimonial-card {
+        position: relative;
+        width: min(720px, 100%); /* reduced from 775 */
+        padding: 24px 24px 22px; /* reduced from 29/27 */
+        overflow: hidden;
+        border: 1px solid rgba(9, 200, 236, 0.68);
+        border-radius: 8px;
+        background: linear-gradient(
+          135deg,
+          rgba(12, 20, 25, 0.85),
+          rgba(4, 9, 13, 0.74)
+        );
+        box-shadow:
+          0 0 30px rgba(9, 200, 236, 0.07),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        text-align: center;
+      }
+
+      .testimonial-card::before {
+        content: "";
+        position: absolute;
+        left: 25%;
+        top: 0px;
+        width: 280px; /* match divider */
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          #00d9ff 35%,
+          #8af4ff 50%,
+          #00cfff 70%,
+          transparent
+        );
+      }
+
+      .quote-mark {
+        display: block;
+        margin-bottom: 6px; /* reduced */
+        color: var(--cyan);
+        font-size: 27px; /* reduced from 31 */
+        line-height: 1;
+        font-weight: 800;
+      }
+
+      .testimonial-text {
+        color: #e1e7eb;
+        font-size: 13px; /* reduced from 14 */
+        font-style: italic;
+        font-weight: 400;
+        line-height: 1.8;
+      }
+
+      .testimonial-author {
+        display: block;
+        margin-top: 13px; /* reduced from 15 */
+        color: #ffffff;
+        font-size: 14px; /* reduced from 15 */
+        font-weight: 800;
+      }
+
+      /* =====================================================
+       ONE-TIME SCROLL-TRIGGERED ENTRANCE
+    ===================================================== */
+      .experience-left,
+      .experience-right {
+        opacity: 0;
+        transform: translateY(24px); /* reduced from 28 */
+        transition:
+          opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+      }
+
+      .experience-right {
+        transition-delay: 0.2s;
+      }
+
+      .experience-section--animated .experience-left,
+      .experience-section--animated .experience-right {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* TABLET */
+      @media (max-width: 1000px) {
+        .experience-container {
+          gap: 26px;
+          padding: 44px 0;
+        }
+
+        .experience-section {
+          background-position: center;
+        }
+
+        .experience-title {
+          max-width: 680px;
+        }
+
+        .experience-stats {
+          max-width: 700px;
+        }
+      }
+
+      /* MOBILE */
+      @media (max-width: 600px) {
+        .experience-container {
+          width: calc(100% - 36px);
+          padding: 36px 0; /* reduced */
+          gap: 24px; /* reduced */
+        }
+
+        .experience-section {
+          background-image:
+            linear-gradient(90deg, rgba(2, 5, 7, 0.96), rgba(2, 5, 7, 0.8)),
+            linear-gradient(0deg, rgba(2, 5, 7, 0.85), transparent);
+          background-position: center;
+        }
+
+        .eyebrow {
+          gap: 9px;
+          margin-bottom: 14px;
+          font-size: 8.5px;
+          letter-spacing: 2px;
+        }
+
+        .eyebrow::after {
+          width: 26px;
+        }
+
+        .experience-title {
+          font-size: clamp(26px, 7vw, 36px); /* reduced */
+          letter-spacing: -1.1px;
+        }
+
+        .title-divider {
+          margin: 18px auto;
+        }
+
+        .experience-stats {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 19px; /* reduced */
+        }
+
+        .stat {
+          padding-right: 10px;
+        }
+
+        .stat + .stat {
+          padding-left: 12px;
+        }
+
+        .stat:nth-child(3) {
+          border-left: none;
+          padding-left: 0;
+        }
+
+        .stat-number {
+          font-size: 24px; /* reduced from 27 */
+          margin-bottom: 8px;
+        }
+
+        .stat-label {
+          font-size: 11px; /* reduced from 12 */
+          line-height: 1.55;
+        }
+
+        .testimonial-card {
+          padding: 20px 18px; /* reduced */
+          border-radius: 13px;
+        }
+
+        .testimonial-text {
+          font-size: 12.5px;
+          line-height: 1.75;
+        }
+
+        .testimonial-author {
+          font-size: 13px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .experience-left,
+        .experience-right {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="experience-section" id="experienceSection">
+      <div class="experience-container">
+        <div class="experience-left">
+          <div class="eyebrow">Built from real market experience.</div>
+
+          <h1 class="experience-title">
+            <span>Real Experience. Real Traders.</span>
+            <span>Real Progress.</span>
+          </h1>
+
+          <div class="title-divider"></div>
+
+          <div class="experience-stats">
+            <!-- Stat 01: Years (counts up) -->
+            <div class="stat">
+              <div class="stat-number" data-target="5" data-suffix="+ Years">
+                0+ Years
+              </div>
+              <p class="stat-label">Trading the financial markets</p>
+            </div>
+
+            <!-- Stat 02: Traders (counts up) -->
+            <div class="stat">
+              <div class="stat-number" data-target="5000" data-suffix="+">
+                0+
+              </div>
+              <p class="stat-label">Traders in the UGFXLAB community</p>
+            </div>
+
+            <!-- Stat 03: Payouts (counts up) -->
+            <div class="stat">
+              <div
+                class="stat-number"
+                data-target="50"
+                data-prefix="$"
+                data-suffix="K+"
+              >
+                $0K+
+              </div>
+              <p class="stat-label">
+                Trading payouts across multiple prop firms
+              </p>
+            </div>
+
+            <!-- Stat 04: Year (stays static — no data-target) -->
+            <div class="stat">
+              <div class="stat-number">2021</div>
+              <p class="stat-label">
+                UGFXLAB <br />
+                Established
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="experience-right">
+          <div class="testimonial-card">
+            <span class="quote-mark">“</span>
+
+            <p class="testimonial-text">
+              I'm not a perfect trader, and I don't pretend to be one. What I've
+              learned is that profitability doesn't come from constantly
+              searching for the next strategy. It comes from knowing your edge,
+              managing risk and becoming obsessed with executing your process
+              consistently.
+            </p>
+
+            <span class="testimonial-author"> — UGFXLAB </span>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const section = document.getElementById("experienceSection");
+        const statNumbers = document.querySelectorAll(
+          ".stat-number[data-target]",
+        );
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        /* ---------- Number count-up helper ---------- */
+        function countUp(el) {
+          const target = parseFloat(el.getAttribute("data-target"));
+          const prefix = el.getAttribute("data-prefix") || "";
+          const suffix = el.getAttribute("data-suffix") || "";
+
+          const isDecimal = target % 1 !== 0;
+          const decimals = isDecimal ? 1 : 0;
+
+          const duration = 1600; // ms
+          const startTime = performance.now();
+
+          function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
+          }
+
+          function formatValue(val) {
+            if (decimals === 0) {
+              return Math.round(val).toLocaleString("en-US");
+            }
+            return val.toFixed(decimals);
+          }
+
+          function tick(now) {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = easeOutCubic(progress);
+            const current = eased * target;
+
+            el.textContent = prefix + formatValue(current) + suffix;
+
+            if (progress < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              el.textContent = prefix + formatValue(target) + suffix;
+            }
+          }
+
+          requestAnimationFrame(tick);
+        }
+
+        /* ---------- Reduced motion: skip animation ---------- */
+        if (prefersReducedMotion) {
+          section.classList.add("experience-section--animated");
+          statNumbers.forEach((el) => {
+            const target = parseFloat(el.getAttribute("data-target"));
+            const prefix = el.getAttribute("data-prefix") || "";
+            const suffix = el.getAttribute("data-suffix") || "";
+            el.textContent = prefix + target.toLocaleString("en-US") + suffix;
+          });
+          return;
+        }
+
+        let hasAnimated = false;
+
+        /* ---------- Section observer: entrance + count-up ---------- */
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+
+                section.classList.add("experience-section--animated");
+
+                statNumbers.forEach((el) => countUp(el));
+
+                observer.unobserve(section);
+              }
+            });
+          },
+          {
+            threshold: 0.25,
+            rootMargin: "0px 0px -60px 0px",
+          },
+        );
+
+        observer.observe(section);
+
+        /* Fallback */
+        if (!("IntersectionObserver" in window)) {
+          section.classList.add("experience-section--animated");
+          statNumbers.forEach((el) => countUp(el));
+        }
+
+        /* ---------- Hover response for desktop stats ---------- */
+        const stats = document.querySelectorAll(".stat");
+        stats.forEach((stat) => {
+          stat.style.transition = "transform 250ms ease";
+
+          stat.addEventListener("mouseenter", () => {
+            stat.style.transform = "translateY(-3px)";
+          });
+
+          stat.addEventListener("mouseleave", () => {
+            stat.style.transform = "translateY(0)";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- card ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>THE LAB | Premium Community</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --lab-black: #030303;
+        --lab-white: #f8f8f8;
+        --lab-cyan: #09c8ec;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--lab-black);
+        color: var(--lab-white);
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* HERO */
+      .premiumCard-hero {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #030303;
+        /* padding: 5rem 3rem 6rem; */
+      }
+
+      .premiumCard-hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          linear-gradient(
+            90deg,
+            #0303032b 0%,
+            rgb(3 3 3 / 32%) 18%,
+            rgba(3, 3, 3, 0.15) 50%,
+            rgb(3 3 3 / 7%) 82%,
+            #0303036e 100%
+          ),
+          linear-gradient(180deg, rgb(0 0 0 / 51%) 0%, rgb(0 0 0 / 83%) 100%);
+      }
+
+      .premiumCard-hero__center-mask {
+        position: absolute;
+        z-index: -1;
+        inset: 15% 17%;
+        background: radial-gradient(
+          ellipse at center,
+          #030303 0%,
+          rgba(3, 3, 3, 0.99) 55%,
+          rgb(3 3 3 / 0%) 76%,
+          transparent 100%
+        );
+        pointer-events: none;
+        border-radius: 33rem;
+      }
+
+      .premiumCard-hero__content {
+        width: min(100% - 40px, 1120px);
+        margin: 0 auto;
+        text-align: center;
+        padding: 70px 0 80px;
+        position: relative;
+        z-index: 2;
+        animation: fadeIn 1s ease both;
+      }
+
+      /* COMMUNITY GRID (updated) */
+      .premiumCard-community-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 26px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: left;
+      }
+
+      /* New unified base class for both cards – renamed to premiumCard-* */
+      .premiumCard-community {
+        display: flex;
+        flex-direction: column;
+        padding: 36px 32px 32px;
+        border: 1px solid rgba(9, 200, 236, 0.28);
+        border-radius: 7px;
+        background: rgba(5, 12, 15, 0.82);
+        box-shadow: 0 0 30px rgba(9, 200, 236, 0.04);
+        transition:
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .premiumCard-community:hover {
+        border-color: rgba(9, 200, 236, 0.55);
+        box-shadow: 0 0 40px rgba(9, 200, 236, 0.08);
+      }
+
+      .premiumCard-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        padding: 6px 16px;
+        border: 1px solid rgba(9, 200, 236, 0.5);
+        border-radius: 100px;
+        background: rgba(9, 200, 236, 0.07);
+        color: var(--lab-cyan);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        align-self: flex-start;
+      }
+
+      .premiumCard-tag::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--lab-cyan);
+        box-shadow: 0 0 8px var(--lab-cyan);
+      }
+
+      .premiumCard-title {
+        font-size: clamp(20px, 2vw, 28px);
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        line-height: 1.2;
+        color: #f8f8f8;
+        margin-bottom: 6px;
+      }
+
+      .premiumCard-sub {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        color: #9a9a9a;
+        margin-bottom: 20px;
+      }
+
+      .premiumCard-divider {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          rgba(9, 200, 236, 0.25),
+          rgba(9, 200, 236, 0.02)
+        );
+        margin-bottom: 20px;
+      }
+
+      .premiumCard-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 28px;
+        flex: 1;
+      }
+
+      .premiumCard-list li {
+        position: relative;
+        padding-left: 22px;
+        font-size: 14px;
+        line-height: 1.6;
+        color: #dcdcdc;
+      }
+
+      .premiumCard-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--lab-cyan);
+        opacity: 0.8;
+        box-shadow: 0 0 6px rgba(9, 200, 236, 0.4);
+      }
+
+      .premiumCard-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        align-self: flex-start;
+        padding: 12px 30px;
+        border-radius: 8px;
+        background: var(--lab-cyan);
+        color: #030303;
+        font-family: inherit;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          background 0.25s ease,
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+        box-shadow:
+          0 0 0 1px rgba(9, 200, 236, 0.4),
+          0 6px 24px rgba(9, 200, 236, 0.25);
+      }
+
+      .premiumCard-cta:hover,
+      .premiumCard-cta:focus-visible {
+        background: #2ad6f5;
+        transform: translateY(-2px);
+        box-shadow:
+          0 0 0 1px rgba(9, 200, 236, 0.6),
+          0 10px 30px rgba(9, 200, 236, 0.4);
+        outline: none;
+      }
+
+      .premiumCard-cta:active {
+        transform: translateY(0);
+      }
+
+      .premiumCard-cta svg {
+        width: 15px;
+        height: 15px;
+        flex: 0 0 15px;
+        transition: transform 0.25s ease;
+      }
+
+      .premiumCard-cta:hover svg,
+      .premiumCard-cta:focus-visible svg {
+        transform: translateX(3px);
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* TABLET */
+      @media (max-width: 860px) {
+        .premiumCard-community-grid {
+          grid-template-columns: 1fr;
+          max-width: 540px;
+          gap: 22px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .premiumCard-hero {
+          min-height: 650px;
+          height: auto;
+          max-height: none;
+          background-position: center;
+        }
+
+        .premiumCard-hero__content {
+          width: calc(100% - 32px);
+          padding: 70px 0 60px;
+        }
+
+        .premiumCard-community {
+          padding: 30px 26px 28px;
+        }
+      }
+
+      /* MOBILE */
+      @media (max-width: 480px) {
+        .premiumCard-hero {
+          min-height: 580px;
+        }
+
+        .premiumCard-hero__content {
+          width: calc(100% - 28px);
+          padding: 60px 0 50px;
+        }
+
+        .premiumCard-hero__center-mask {
+          inset: 12% 0;
+        }
+
+        .premiumCard-community {
+          padding: 26px 22px 24px;
+          border-radius: 16px;
+        }
+
+        .premiumCard-title {
+          font-size: 19px;
+        }
+
+        .premiumCard-list li {
+          font-size: 13px;
+        }
+
+        .premiumCard-cta {
+          width: 100%;
+          padding: 13px 24px;
+          font-size: 11px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .premiumCard-hero__content {
+          animation: none;
+        }
+
+        .premiumCard-community,
+        .premiumCard-cta {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="premiumCard-hero">
+      <div class="premiumCard-hero__center-mask" aria-hidden="true"></div>
+
+      <div class="premiumCard-hero__content">
+        <div class="premiumCard-community-grid">
+          <!-- PREMIUM COMMUNITY (formerly free, now unified style with premiumCard- prefix) -->
+          <div class="premiumCard-community">
+            <span class="premiumCard-tag">Premium</span>
+            <h2 class="premiumCard-title">Premium Trading Community</h2>
+            <p class="premiumCard-sub">FxlabTrades</p>
+
+            <div class="premiumCard-divider"></div>
+
+            <ul class="premiumCard-list">
+              <li>Weekly market outlooks and trade setups</li>
+              <li>Entry, stop loss and take profit levels</li>
+              <li>Real-time trade management updates</li>
+              <li>Educational trade breakdowns</li>
+            </ul>
+
+            <a class="premiumCard-cta" href="#premium">
+              Join Premium
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12H19M19 12L13 6M19 12L13 18"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+
+          <!-- SECOND PREMIUM CARD (kept as premium, also unified) -->
+          <div class="premiumCard-community">
+            <span class="premiumCard-tag">Premium</span>
+            <h2 class="premiumCard-title">Advanced Premium Access</h2>
+            <p class="premiumCard-sub">FxlabTrades Elite</p>
+
+            <div class="premiumCard-divider"></div>
+
+            <ul class="premiumCard-list">
+              <li>Live trade alerts and analysis</li>
+              <li>Priority support and Q&A</li>
+              <li>Exclusive strategy playbooks</li>
+              <li>Monthly performance reviews</li>
+            </ul>
+
+            <a class="premiumCard-cta" href="#elite">
+              Join Elite
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12H19M19 12L13 6M19 12L13 18"
+                  stroke="currentColor"
+                  stroke-width="2.4"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Optional: subtle parallax effect for the background.
+      (() => {
+        const hero = document.querySelector(".premiumCard-hero");
+
+        if (
+          !hero ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          return;
+        }
+
+        let ticking = false;
+
+        window.addEventListener(
+          "scroll",
+          () => {
+            if (ticking) return;
+
+            ticking = true;
+
+            window.requestAnimationFrame(() => {
+              const rect = hero.getBoundingClientRect();
+
+              if (rect.bottom > 0 && rect.top < window.innerHeight) {
+                const offset = rect.top * -0.04;
+                hero.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+              }
+
+              ticking = false;
+            });
+          },
+          { passive: true },
+        );
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- membership plan ----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB | Membership Plans</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --cyan: #09c8ec;
+        --black: #03070a;
+        --white: #f5f7f8;
+        --muted: #bdc7ce;
+        --border: rgba(9, 200, 236, 0.32);
+        --radius: 12px;
+        --space-xs: 8px;
+        --space-sm: 14px;
+        --space-md: 20px;
+        --space-lg: 28px;
+        --space-xl: 36px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #000;
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      button,
+      a {
+        font: inherit;
+      }
+
+      button {
+        cursor: pointer;
+      }
+
+      /* ---------- SECTION SHELL ---------- */
+
+      .plans-section {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+        padding: var(--space-xl) clamp(16px, 6vw, 120px) var(--space-xl);
+        background: #03070a;
+        overflow: hidden;
+      }
+
+      .plans-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background-image: url("YOUR-BACKGROUND-IMAGE.jpg");
+        background-size: cover;
+        background-position: center;
+        opacity: 0.3;
+      }
+
+      .plans-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.96),
+          rgba(0, 0, 0, 0.84) 50%,
+          rgba(0, 0, 0, 0.94)
+        );
+      }
+
+      .plans-container {
+        width: 100%;
+        max-width: 1360px;
+        margin: 0 auto;
+      }
+
+      /* ---------- COMMUNITY LAYOUT ---------- */
+
+      .community-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) minmax(320px, 1fr);
+        gap: var(--space-md);
+        align-items: start;
+      }
+
+      .section-label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: var(--space-sm);
+        position: relative;
+      }
+
+      .section-label::after {
+        content: "";
+        display: block;
+        width: 42px;
+        height: 2px;
+        background: var(--cyan);
+        margin-top: 8px;
+      }
+
+      .community-title {
+        font-size: clamp(28px, 3vw, 44px);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -1.4px;
+        margin-bottom: 10px;
+      }
+
+      .cyan {
+        color: var(--cyan);
+      }
+
+      .community-description {
+        color: #d2d9df;
+        font-size: 15px;
+        line-height: 1.7;
+        max-width: 760px;
+        margin-bottom: var(--space-md);
+      }
+
+      /* ---------- INCLUDED FEATURES ---------- */
+
+      .included-box {
+        padding: var(--space-md) var(--space-md) var(--space-lg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        background: rgba(0, 7, 10, 0.77);
+        backdrop-filter: blur(8px);
+      }
+
+      .included-title {
+        font-size: 24px;
+        line-height: 1.2;
+        font-weight: 800;
+        letter-spacing: -0.6px;
+        margin-bottom: var(--space-md);
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 18px;
+        row-gap: 16px;
+      }
+
+      .feature {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        min-width: 0;
+      }
+
+      .feature-icon {
+        flex: 0 0 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cyan);
+        font-size: 22px;
+        background: rgba(9, 200, 236, 0.09);
+        border: 1px solid rgba(9, 200, 236, 0.18);
+        border-radius: 10px;
+      }
+
+      .feature h3 {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.35;
+        margin-bottom: 2px;
+      }
+
+      .feature p {
+        font-size: 13px;
+        line-height: 1.45;
+        color: var(--muted);
+      }
+
+      /* ---------- PRICING PANEL ---------- */
+
+      .pricing-panel {
+        border: 1.5px solid var(--cyan);
+        border-radius: var(--radius);
+        padding: var(--space-md);
+        background: rgba(0, 5, 8, 0.88);
+        box-shadow: 0 0 24px rgba(9, 200, 236, 0.07);
+        display: flex;
+        flex-direction: column;
+        margin-top: 65px;
+      }
+
+      .pricing-heading {
+        font-size: 19px;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .plan-options {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .plan-option {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 42px;
+        padding: 8px 12px;
+        border: 1px solid rgba(9, 200, 236, 0.22);
+        border-radius: 9px;
+        background: rgba(0, 0, 0, 0.35);
+        transition:
+          border-color 0.25s,
+          background 0.25s;
+        cursor: pointer;
+      }
+
+      .plan-option:hover,
+      .plan-option.active {
+        border-color: var(--cyan);
+        background: rgba(9, 200, 236, 0.07);
+      }
+
+      .plan-option input {
+        appearance: none;
+        -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        border: 2px solid #66747d;
+        border-radius: 50%;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .plan-option input:checked {
+        border-color: var(--cyan);
+      }
+
+      .plan-option input:checked::after {
+        content: "";
+        position: absolute;
+        inset: 3.5px;
+        border-radius: 50%;
+        background: var(--cyan);
+      }
+
+      .plan-name {
+        flex: 1;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .plan-price {
+        font-size: 16px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .best-value {
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+        color: #001015;
+        background: var(--cyan);
+        border-radius: 20px;
+        padding: 4px 9px;
+        white-space: nowrap;
+      }
+
+      .price-summary {
+        border-top: 1px solid rgba(9, 200, 236, 0.38);
+        margin-top: var(--space-md);
+        padding-top: var(--space-sm);
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .selected-plan-name {
+        color: #d1d9df;
+        font-size: 13px;
+        margin-bottom: 1px;
+      }
+
+      .selected-price {
+        font-size: clamp(32px, 3vw, 42px);
+        line-height: 1.1;
+        letter-spacing: -1px;
+        font-weight: 800;
+      }
+
+      .join-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid var(--cyan);
+        border-radius: 10px;
+        background: var(--cyan);
+        color: #001014;
+        font-size: 14px;
+        font-weight: 800;
+        padding: 12px 18px;
+        transition:
+          background 0.25s,
+          color 0.25s,
+          transform 0.25s;
+      }
+
+      .join-button:hover {
+        background: transparent;
+        color: var(--cyan);
+        transform: translateY(-2px);
+      }
+
+      .price-note {
+        color: var(--muted);
+        font-size: 12.5px;
+        margin-top: 7px;
+        line-height: 1.45;
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+
+      @media (min-width: 1500px) {
+        .plans-container {
+          max-width: 1140px;
+        }
+      }
+
+      @media (max-width: 1050px) {
+        .community-layout {
+          grid-template-columns: 1fr;
+          gap: var(--space-lg);
+        }
+
+        .pricing-panel {
+          max-width: none;
+        }
+
+        .community-title {
+          font-size: 38px;
+        }
+
+        .features-grid {
+          column-gap: 16px;
+          row-gap: 14px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .plans-section {
+          padding: var(--space-lg) 14px var(--space-lg);
+        }
+
+        .community-title {
+          font-size: 29px;
+          letter-spacing: -0.8px;
+        }
+
+        .community-description {
+          font-size: 13.5px;
+          line-height: 1.6;
+          margin-bottom: var(--space-sm);
+        }
+
+        .included-box {
+          padding: var(--space-sm) 14px var(--space-md);
+        }
+
+        .included-title {
+          font-size: 22px;
+          margin-bottom: var(--space-sm);
+        }
+
+        .features-grid {
+          grid-template-columns: 1fr;
+          gap: 13px;
+        }
+
+        .feature-icon {
+          flex-basis: 46px;
+          height: 46px;
+          font-size: 20px;
+        }
+
+        .feature h3 {
+          font-size: 13.5px;
+        }
+
+        .feature p {
+          font-size: 12.5px;
+        }
+
+        .pricing-panel {
+          padding: var(--space-sm);
+        }
+
+        .plan-option {
+          gap: 9px;
+          padding: 8px;
+        }
+
+        .plan-name {
+          font-size: 13px;
+        }
+
+        .plan-price {
+          font-size: 14.5px;
+        }
+
+        .best-value {
+          font-size: 8px;
+          padding: 4px 7px;
+        }
+
+        .price-summary {
+          grid-template-columns: 1fr;
+          gap: 11px;
+        }
+
+        .price-summary .join-button {
+          width: 100%;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .community-title {
+          font-size: 25px;
+        }
+
+        .plan-option {
+          gap: 7px;
+        }
+
+        .plan-name {
+          font-size: 12px;
+        }
+
+        .plan-price {
+          font-size: 13.5px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="plans-section">
+      <div class="plans-container">
+        <div class="community-layout">
+          <div class="community-content">
+            <span class="section-label">Membership Plans</span>
+
+            <h1 class="community-title">
+              Premium Community —
+              <span class="cyan">FxlabTrades</span>
+            </h1>
+
+            <p class="community-description">
+              Get weekly market outlooks, trade setups and real-time trade
+              management updates, all in one community.
+            </p>
+
+            <div class="included-box">
+              <h2 class="included-title">
+                What’s <span class="cyan">Included</span>
+              </h2>
+
+              <div class="features-grid">
+                <div class="feature">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-chart-column"></i>
+                  </div>
+                  <div>
+                    <h3>Weekly Market Outlooks</h3>
+                    <p>Market analysis and key levels.</p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                  </div>
+                  <div>
+                    <h3>Educational Breakdowns</h3>
+                    <p>Learn from real trade examples.</p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-list-check"></i>
+                  </div>
+                  <div>
+                    <h3>Trade Setups</h3>
+                    <p>Entry, stop loss and take profit.</p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-users"></i>
+                  </div>
+                  <div>
+                    <h3>Trading Community</h3>
+                    <p>Connect with fellow traders.</p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                  </div>
+                  <div>
+                    <h3>Real-Time Trade Updates</h3>
+                    <p>Live management and adjustments.</p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                  </div>
+                  <div>
+                    <h3>Our Market Analysis</h3>
+                    <p>Follow our weekly trading process.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pricing-panel">
+            <h2 class="pricing-heading">Choose Your Plan</h2>
+
+            <div class="plan-options" id="planOptions">
+              <label
+                class="plan-option active"
+                data-name="1 Month Membership"
+                data-price="40"
+                data-note="One month of community access."
+              >
+                <input type="radio" name="membership" value="1" checked />
+                <span class="plan-name">1 Month</span>
+                <span class="plan-price">$40</span>
+              </label>
+
+              <label
+                class="plan-option"
+                data-name="3 Months Membership"
+                data-price="100"
+                data-note="Three months of community access."
+              >
+                <input type="radio" name="membership" value="3" />
+                <span class="plan-name">3 Months</span>
+                <span class="plan-price">$100</span>
+              </label>
+
+              <label
+                class="plan-option"
+                data-name="6 Months Membership"
+                data-price="200"
+                data-note="Six months of community access."
+              >
+                <input type="radio" name="membership" value="6" />
+                <span class="plan-name">6 Months</span>
+                <span class="plan-price">$200</span>
+              </label>
+
+              <label
+                class="plan-option"
+                data-name="1 Year Membership"
+                data-price="300"
+                data-note="One full year of community access."
+              >
+                <input type="radio" name="membership" value="12" />
+                <span class="plan-name">1 Year</span>
+                <span class="best-value">BEST VALUE</span>
+                <span class="plan-price">$300</span>
+              </label>
+
+              <label
+                class="plan-option"
+                data-name="Lifetime Membership"
+                data-price="1000"
+                data-note="One payment. Permanent access."
+              >
+                <input type="radio" name="membership" value="lifetime" />
+                <span class="plan-name">Lifetime Access</span>
+                <span class="plan-price">$1,000</span>
+              </label>
+            </div>
+
+            <div class="price-summary" aria-live="polite">
+              <div>
+                <p class="selected-plan-name" id="selectedPlanName">
+                  1 Month Membership
+                </p>
+                <div class="selected-price" id="selectedPrice">$40</div>
+              </div>
+
+              <a href="#" class="join-button" id="joinButton">
+                Join Now <i class="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <p class="price-note" id="priceNote">
+              One month of community access.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const planOptions = document.querySelectorAll(".plan-option");
+      const selectedPlanName = document.getElementById("selectedPlanName");
+      const selectedPrice = document.getElementById("selectedPrice");
+      const priceNote = document.getElementById("priceNote");
+      const joinButton = document.getElementById("joinButton");
+
+      planOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+          planOptions.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          option.classList.add("active");
+
+          const radio = option.querySelector('input[type="radio"]');
+          radio.checked = true;
+
+          const name = option.dataset.name;
+          const price = Number(option.dataset.price);
+          const note = option.dataset.note;
+
+          selectedPlanName.textContent = name;
+          selectedPrice.textContent = "$" + price.toLocaleString("en-US");
+          priceNote.textContent = note;
+
+          joinButton.href = "/checkout?plan=" + encodeURIComponent(radio.value);
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ------ 1 on 1 ----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1-on-1 Mentorship</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+
+    <style>
+      :root {
+        --cyan: #00e5ff;
+        --bg-dark: #030303;
+        --card-bg: #070909;
+        --white: #ffffff;
+        --text-muted: #d1d5db;
+        --border-dim: rgba(0, 229, 255, 0.4);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+        overflow-x: hidden;
+      }
+
+      a {
+        font: inherit;
+        text-decoration: none;
+      }
+
+      /* SECTION LABEL */
+      .section-label {
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .section-label::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: var(--cyan);
+        margin: 12px auto 0;
+      }
+
+      .cyan-text {
+        color: var(--cyan);
+      }
+
+      /* MENTORSHIP SECTION */
+      .mentorship-section {
+        padding: 60px 24px 80px;
+        background: var(--bg-dark);
+      }
+
+      .mentorship-container {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .mentorship-heading {
+        text-align: center;
+        margin-bottom: 45px;
+      }
+
+      .mentorship-heading h2 {
+        font-size: clamp(32px, 4vw, 46px);
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 16px;
+      }
+
+      .mentorship-heading p {
+        color: var(--text-muted);
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .mentorship-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      /* CARDS */
+      .mentor-card {
+        position: relative;
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-dim);
+        border-radius: 12px;
+        padding: 35px 35px 30px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .mentor-card.featured {
+        border-color: var(--cyan);
+        box-shadow: 0 0 20px rgba(0, 229, 255, 0.05);
+        padding-top: 35px;
+      }
+
+      /* BADGE */
+      .mentor-badge {
+        position: absolute;
+        top: -15px; /* Pulls it up halfway out of the card */
+        left: -1px;
+        width: calc(100% + 2px);
+        text-align: center;
+        padding: 10px;
+        background: var(--cyan);
+        color: #000;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        border-radius: 12px 12px 0 0;
+      }
+
+      /* CARD HEADER */
+      .mentor-header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 22px;
+        border-bottom: 1px solid var(--border-dim);
+        margin-bottom: 22px;
+      }
+
+      .mentor-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 65px;
+        height: 65px;
+        flex-shrink: 0;
+        border: 1px solid var(--cyan);
+        border-radius: 50%;
+        color: var(--cyan);
+        font-size: 28px;
+      }
+
+      .mentor-title-group h3 {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+
+      .mentor-price {
+        font-size: 32px;
+        font-weight: 800;
+        color: var(--white);
+      }
+
+      .featured .mentor-price {
+        color: var(--cyan);
+      }
+
+      /* CARD BODY */
+      .mentor-desc {
+        color: var(--text-muted);
+        font-size: 14.5px;
+        line-height: 1.6;
+        margin-bottom: 22px;
+      }
+
+      .included-label {
+        color: var(--cyan);
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .mentor-features {
+        list-style: none;
+        margin-bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        flex-grow: 1; /* Pushes button to bottom */
+      }
+
+      .mentor-features li {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        font-size: 14.5px;
+        color: #e5e7eb;
+        line-height: 1.4;
+      }
+
+      .mentor-features i {
+        color: var(--cyan);
+        font-size: 18px;
+        margin-top: 1px;
+      }
+
+      /* BUTTONS */
+      .consult-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        padding: 15px 20px;
+        font-size: 15px;
+        font-weight: 700;
+        border-radius: 30px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .consult-button.outline {
+        background: transparent;
+        border: 1.5px solid var(--cyan);
+        color: var(--white);
+      }
+
+      .consult-button.outline:hover {
+        background: rgba(0, 229, 255, 0.1);
+        color: var(--cyan);
+      }
+
+      .consult-button.solid {
+        background: var(--cyan);
+        border: 1.5px solid var(--cyan);
+        color: #000;
+      }
+
+      .consult-button.solid:hover {
+        background: transparent;
+        color: var(--cyan);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 850px) {
+        .mentorship-grid {
+          grid-template-columns: 1fr;
+          gap: 35px;
+        }
+
+        .mentor-badge {
+          top: 0;
+          border-radius: 12px 12px 0 0;
+        }
+
+        .mentor-card.featured {
+          padding-top: 60px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .mentor-card {
+          padding: 25px 20px 25px;
+        }
+
+        .mentor-card.featured {
+          padding-top: 55px;
+        }
+
+        .mentor-header {
+          gap: 15px;
+        }
+
+        .mentor-icon {
+          width: 55px;
+          height: 55px;
+          font-size: 24px;
+        }
+
+        .mentor-title-group h3 {
+          font-size: 18px;
+        }
+
+        .mentor-price {
+          font-size: 26px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="mentorship-section">
+      <div class="mentorship-container">
+        <div class="mentorship-heading">
+          <span class="section-label">1-on-1 Mentorship</span>
+          <h2>Choose Your <span class="cyan-text">Path</span></h2>
+          <p>
+            Our highest level of mentorship, built for serious, committed
+            traders who want personalised guidance, direct access and a clear
+            path toward consistency, funding and ultimately scaling toward
+            7-figure trading capital.
+          </p>
+        </div>
+
+        <div class="mentorship-grid">
+          <!-- 3 MONTHS -->
+          <article class="mentor-card">
+            <div class="mentor-header">
+              <div class="mentor-icon">
+                <i class="fa-regular fa-user"></i>
+              </div>
+              <div class="mentor-title-group">
+                <h3>3-Month Mentorship</h3>
+                <div class="mentor-price">$1,999</div>
+              </div>
+            </div>
+
+            <p class="mentor-desc">
+              Focused 1-on-1 mentorship designed to sharpen your edge, fix the
+              gaps in your trading and build momentum fast.
+            </p>
+
+            <p class="included-label">What's Included:</p>
+
+            <ul class="mentor-features">
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Personalised trading
+                playbook
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Weekly 1-on-1 calls
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Direct mentorship &
+                support
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Personal trading review
+                and feedback
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Funding & scaling
+                roadmap
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> 3 months of
+                personalised guidance
+              </li>
+            </ul>
+
+            <a href="#" class="consult-button outline">
+              Book a Free Consultation <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+
+          <!-- 6 MONTHS -->
+          <article class="mentor-card featured">
+            <div class="mentor-badge">BEST VALUE</div>
+
+            <div class="mentor-header">
+              <div class="mentor-icon">
+                <i class="fa-regular fa-user"></i>
+              </div>
+              <div class="mentor-title-group">
+                <h3>6-Month Mentorship</h3>
+                <div class="mentor-price">$2,999</div>
+              </div>
+            </div>
+
+            <p class="mentor-desc">
+              The full transformation: a complete funding and scaling plan,
+              deeper development, and more time with UGFXLAB as you work toward
+              consistency, funding and scaling toward 7-figure trading capital.
+            </p>
+
+            <p class="included-label">What's Included:</p>
+
+            <ul class="mentor-features">
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Personalised trading
+                playbook
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Weekly 1-on-1 calls
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Direct mentorship &
+                support
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Personal trading review
+                and feedback
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> Complete funding &
+                scaling roadmap
+              </li>
+              <li>
+                <i class="fa-solid fa-circle-check"></i> 6 months of
+                personalised guidance
+              </li>
+            </ul>
+
+            <a href="#" class="consult-button solid">
+              Book a Free Consultation <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
+
+<!-- ---- Community Voices ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Voices</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #03070a;
+        --card: #080e12;
+        --cyan: #09c8ec;
+        --white: #f4f7f8;
+        --muted: #929da5;
+        --border: rgba(255, 255, 255, 0.12);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        font-size: 16.5px;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--white);
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .sr-container {
+        width: min(1140px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .sr-eyebrow {
+        display: inline-block;
+        margin-bottom: 16px;
+        color: var(--cyan);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+      }
+
+      /* ===== COMMUNITY VOICES ===== */
+
+      .sr-testimonials {
+        position: relative;
+        padding: 60px 0 70px;
+        background: #000000;
+      }
+
+      .sr-testimonial-layout {
+        display: grid;
+        grid-template-columns: 1.11fr 1fr;
+        gap: 60px;
+        align-items: center;
+      }
+
+      .sr-testimonial-left {
+        max-width: 480px;
+      }
+
+      .sr-testimonial-left .sr-eyebrow {
+        margin-bottom: 14px;
+      }
+
+      .sr-testimonial-left h2 {
+        margin: 0 0 18px;
+        font-size: clamp(30px, 3.6vw, 47px);
+        font-weight: 600;
+        letter-spacing: -0.5px;
+        line-height: 1;
+      }
+
+      .sr-testimonial-left h2 span {
+        color: var(--cyan);
+      }
+
+      .sr-testimonial-left > p {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: 14.5px;
+        line-height: 1.9;
+      }
+
+      .sr-trust-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 30px;
+      }
+
+      .sr-trust-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #b2c0c7;
+        font-size: 15.5px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        line-height: 1.5;
+      }
+
+      .sr-trust-icon {
+        display: flex;
+        width: 45px;
+        height: 42px;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(9, 200, 236, 0.25);
+        border-radius: 50%;
+        background: rgba(9, 200, 236, 0.06);
+      }
+
+      .sr-trust-icon svg {
+        width: 32px;
+        height: 17px;
+        fill: var(--cyan);
+      }
+
+      /* Right-side community slider */
+
+      .sr-community-slider {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(9, 200, 236, 0.18);
+        background: linear-gradient(
+          145deg,
+          rgba(9, 200, 236, 0.03),
+          rgba(255, 255, 255, 0.01)
+        );
+        box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.8);
+      }
+
+      .sr-community-viewport {
+        overflow: hidden;
+      }
+
+      .sr-community-track {
+        display: flex;
+        transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+      }
+
+      .sr-community-slide {
+        flex: 0 0 100%;
+        min-width: 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #03070a;
+        cursor: zoom-in;
+      }
+
+      .sr-community-slide img {
+        display: block;
+        width: 100%;
+        height: 420px;
+        object-fit: contain;
+        padding: 22px;
+      }
+
+      .sr-community-slide::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 60%,
+          rgba(3, 7, 10, 0.6) 100%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+
+      .sr-community-slide:hover::after {
+        opacity: 1;
+      }
+
+      .sr-community-slide:hover {
+        border-color: var(--cyan);
+      }
+
+      .sr-community-slide-arrow {
+        position: absolute;
+        top: 50%;
+        z-index: 3;
+        display: flex;
+        width: 38px;
+        height: 38px;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        background: rgba(13, 23, 29, 0.85);
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+        transform: translateY(-50%);
+        transition: 0.2s;
+      }
+
+      .sr-community-slide-arrow:hover {
+        border-color: var(--cyan);
+        background: var(--cyan);
+        color: #001015;
+      }
+
+      .sr-community-slide-prev {
+        left: 12px;
+      }
+
+      .sr-community-slide-next {
+        right: 12px;
+      }
+
+      .sr-community-indicators {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 14px 0 16px;
+        background: rgba(3, 7, 10, 0.6);
+      }
+
+      .sr-community-indicator {
+        width: 7px;
+        height: 7px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: #52616a;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .sr-community-indicator.active {
+        width: 24px;
+        border-radius: 10px;
+        background: var(--cyan);
+      }
+
+      .sr-community-fallback {
+        display: none;
+        padding: 15px;
+        color: var(--muted);
+        font-size: 11px;
+        text-align: center;
+      }
+
+      /* Full-screen lightbox */
+
+      .sr-lightbox {
+        position: fixed;
+        inset: 0;
+        z-index: 999999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 55px 65px;
+        background: rgba(0, 0, 0, 0.96);
+        backdrop-filter: blur(10px);
+      }
+
+      .sr-lightbox.is-open {
+        display: flex;
+      }
+
+      .sr-lightbox-image {
+        display: block;
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+      }
+
+      .sr-lightbox-close,
+      .sr-lightbox-arrow {
+        position: absolute;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        background: rgba(13, 23, 29, 0.85);
+        color: white;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+
+      .sr-lightbox-close {
+        top: 18px;
+        right: 22px;
+        width: 44px;
+        height: 44px;
+        font-size: 27px;
+      }
+
+      .sr-lightbox-arrow {
+        top: 50%;
+        width: 44px;
+        height: 44px;
+        transform: translateY(-50%);
+        font-size: 28px;
+      }
+
+      .sr-lightbox-prev {
+        left: 16px;
+      }
+      .sr-lightbox-next {
+        right: 16px;
+      }
+
+      .sr-lightbox-arrow:hover,
+      .sr-lightbox-close:hover {
+        border-color: var(--cyan);
+        background: var(--cyan);
+        color: #001015;
+      }
+
+      .sr-lightbox-counter {
+        position: absolute;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #c6d1d6;
+        font-size: 12px;
+      }
+
+      .sr-lightbox-counter span {
+        color: var(--cyan);
+      }
+
+      /* ===== RESPONSIVE ===== */
+
+      @media (max-width: 1050px) {
+        .sr-testimonial-layout {
+          gap: 40px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .sr-testimonial-layout {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .sr-testimonial-left {
+          max-width: 100%;
+          text-align: center;
+        }
+        .sr-trust-list {
+          align-items: center;
+        }
+        .sr-trust-item {
+          justify-content: center;
+        }
+        .sr-community-slide img {
+          height: 360px;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .sr-container {
+          width: calc(100% - 32px);
+        }
+        .sr-testimonials {
+          padding: 50px 0 60px;
+        }
+        .sr-community-slide img {
+          height: 320px;
+          padding: 16px;
+        }
+        .sr-community-slide-arrow {
+          width: 34px;
+          height: 34px;
+          font-size: 20px;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .sr-container {
+          width: calc(100% - 24px);
+        }
+        .sr-testimonials {
+          padding: 40px 0 50px;
+        }
+        .sr-community-slide img {
+          height: 260px;
+          padding: 12px;
+        }
+        .sr-community-slide-arrow {
+          width: 30px;
+          height: 30px;
+          font-size: 18px;
+        }
+        .sr-community-slide-prev {
+          left: 8px;
+        }
+        .sr-community-slide-next {
+          right: 8px;
+        }
+        .sr-community-indicators {
+          padding: 10px 0 12px;
+          gap: 6px;
+        }
+        .sr-community-indicator {
+          width: 6px;
+          height: 6px;
+        }
+        .sr-community-indicator.active {
+          width: 20px;
+        }
+        .sr-trust-item {
+          font-size: 11.5px;
+        }
+        .sr-trust-icon {
+          width: 30px;
+          height: 30px;
+        }
+        .sr-testimonial-left > p {
+          font-size: 12.5px;
+          margin-bottom: 22px;
+        }
+        .sr-testimonial-left h2 {
+          margin-bottom: 14px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .sr-community-slide img {
+          height: 220px;
+          padding: 10px;
+        }
+        .sr-community-slide-arrow {
+          width: 26px;
+          height: 26px;
+          font-size: 16px;
+        }
+        .sr-lightbox {
+          padding: 55px 10px;
+        }
+        .sr-lightbox-arrow {
+          width: 36px;
+          height: 36px;
+        }
+        .sr-lightbox-prev {
+          left: 5px;
+        }
+        .sr-lightbox-next {
+          right: 5px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .sr-community-track {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ================= COMMUNITY VOICES ================= -->
+
+    <section class="sr-testimonials" id="student-testimonials">
+      <div class="sr-container">
+        <div class="sr-testimonial-layout">
+          <!-- LEFT: Heading + trust -->
+          <div class="sr-testimonial-left">
+            <div class="sr-eyebrow">Community Voices</div>
+            <h2>What Others Are <span>Saying</span></h2>
+            <p>
+              Real feedback from traders who've engaged with our resources and
+              community. Screenshots are shared with permission.
+            </p>
+
+            <div class="sr-trust-list">
+              <div class="sr-trust-item">
+                <span class="sr-trust-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"
+                    />
+                  </svg>
+                </span>
+                Verified community members
+              </div>
+              <div class="sr-trust-item">
+                <span class="sr-trust-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                    />
+                  </svg>
+                </span>
+                Authentic screenshots
+              </div>
+              <div class="sr-trust-item">
+                <span class="sr-trust-icon">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"
+                    />
+                  </svg>
+                </span>
+                Real conversations
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: Community image slider -->
+          <div class="sr-community-slider" id="srCommunitySlider">
+            <div class="sr-community-viewport" id="srCommunityViewport">
+              <div class="sr-community-track" id="srCommunityTrack">
+                <!-- Slide 1 -->
+                <div
+                  class="sr-community-slide"
+                  data-href="https://drive.google.com/file/d/1VdNpnD7uO_8pI_YT0RXBSbMXPD9U3k0O/view"
+                >
+                  <img
+                    src="https://drive.google.com/thumbnail?id=1VdNpnD7uO_8pI_YT0RXBSbMXPD9U3k0O&sz=w1000"
+                    alt="Community feedback one"
+                    loading="lazy"
+                  />
+                </div>
+
+                <!-- Slide 2 -->
+                <div
+                  class="sr-community-slide"
+                  data-href="https://drive.google.com/file/d/1xasNxV49PycgPJqOtBQAuBAZ1N30UCzh/view"
+                >
+                  <img
+                    src="https://drive.google.com/thumbnail?id=1xasNxV49PycgPJqOtBQAuBAZ1N30UCzh&sz=w1000"
+                    alt="Community feedback two"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <button
+              class="sr-community-slide-arrow sr-community-slide-prev"
+              id="srCommunityPrev"
+              aria-label="Previous community image"
+            >
+              ‹
+            </button>
+            <button
+              class="sr-community-slide-arrow sr-community-slide-next"
+              id="srCommunityNext"
+              aria-label="Next community image"
+            >
+              ›
+            </button>
+
+            <div
+              class="sr-community-indicators"
+              id="srCommunityIndicators"
+            ></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= IMAGE LIGHTBOX ================= -->
+
+    <div
+      class="sr-lightbox"
+      id="srLightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enlarged result image"
+    >
+      <button class="sr-lightbox-close" id="srLightboxClose" aria-label="Close">
+        ×
+      </button>
+      <button
+        class="sr-lightbox-arrow sr-lightbox-prev"
+        id="srLightboxPrev"
+        aria-label="Previous image"
+      >
+        ‹
+      </button>
+      <img
+        class="sr-lightbox-image"
+        id="srLightboxImage"
+        src=""
+        alt="Enlarged result"
+      />
+      <button
+        class="sr-lightbox-arrow sr-lightbox-next"
+        id="srLightboxNext"
+        aria-label="Next image"
+      >
+        ›
+      </button>
+      <div class="sr-lightbox-counter" id="srLightboxCounter"></div>
+    </div>
+
+    <script>
+      (function () {
+        "use strict";
+
+        const modal = document.getElementById("srLightbox");
+        const modalImage = document.getElementById("srLightboxImage");
+        const counter = document.getElementById("srLightboxCounter");
+        const closeButton = document.getElementById("srLightboxClose");
+        const prevButton = document.getElementById("srLightboxPrev");
+        const nextButton = document.getElementById("srLightboxNext");
+
+        let lightboxImages = [];
+        let lightboxIndex = 0;
+        let lastFocused = null;
+        let touchStartX = 0;
+
+        function thumbnail(id) {
+          return (
+            "https://drive.google.com/thumbnail?id=" +
+            encodeURIComponent(id) +
+            "&sz=w1600"
+          );
+        }
+
+        function showLightbox(images, index, alt) {
+          lightboxImages = images;
+          lightboxIndex = index;
+          lastFocused = document.activeElement;
+
+          modalImage.alt = alt || "Enlarged result image";
+          modal.classList.add("is-open");
+          document.body.style.overflow = "hidden";
+          renderLightbox();
+          closeButton.focus();
+        }
+
+        function renderLightbox() {
+          if (!lightboxImages.length) return;
+
+          modalImage.src = thumbnail(lightboxImages[lightboxIndex]);
+          counter.innerHTML =
+            "<span>" +
+            (lightboxIndex + 1) +
+            "</span> / " +
+            lightboxImages.length;
+
+          const multiple = lightboxImages.length > 1;
+          prevButton.style.display = multiple ? "flex" : "none";
+          nextButton.style.display = multiple ? "flex" : "none";
+        }
+
+        function stepLightbox(direction) {
+          if (lightboxImages.length < 2) return;
+
+          lightboxIndex =
+            (lightboxIndex + direction + lightboxImages.length) %
+            lightboxImages.length;
+
+          renderLightbox();
+        }
+
+        function closeLightbox() {
+          modal.classList.remove("is-open");
+          document.body.style.overflow = "";
+          modalImage.removeAttribute("src");
+
+          if (lastFocused && lastFocused.focus) lastFocused.focus();
+        }
+
+        // Community slider
+        const communityTrack = document.getElementById("srCommunityTrack");
+        const communitySlider = document.getElementById("srCommunitySlider");
+        const communitySlides = Array.from(
+          communityTrack.querySelectorAll(".sr-community-slide"),
+        );
+        const communityPrev = document.getElementById("srCommunityPrev");
+        const communityNext = document.getElementById("srCommunityNext");
+        const communityIndicators = document.getElementById(
+          "srCommunityIndicators",
+        );
+        const communityViewport = document.getElementById(
+          "srCommunityViewport",
+        );
+
+        let communityIndex = 0;
+        let communityAutoTimer = null;
+        let isPaused = false;
+
+        function buildCommunityIndicators() {
+          communityIndicators.innerHTML = "";
+
+          communitySlides.forEach(function (_, i) {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "sr-community-indicator";
+            dot.setAttribute("aria-label", "Show community image " + (i + 1));
+
+            dot.addEventListener("click", function () {
+              communityIndex = i;
+              updateCommunitySlider();
+              resetCommunityAuto();
+            });
+
+            communityIndicators.appendChild(dot);
+          });
+        }
+
+        function updateCommunitySlider() {
+          communityTrack.style.transform =
+            "translateX(-" + communityIndex * 100 + "%)";
+
+          const indicators = communityIndicators.children;
+
+          for (let i = 0; i < indicators.length; i++) {
+            indicators[i].classList.toggle("active", i === communityIndex);
+          }
+        }
+
+        function nextCommunitySlide() {
+          communityIndex = (communityIndex + 1) % communitySlides.length;
+          updateCommunitySlider();
+        }
+
+        function prevCommunitySlide() {
+          communityIndex =
+            (communityIndex - 1 + communitySlides.length) %
+            communitySlides.length;
+          updateCommunitySlider();
+        }
+
+        function startCommunityAuto() {
+          if (isPaused) return;
+          clearInterval(communityAutoTimer);
+          communityAutoTimer = setInterval(nextCommunitySlide, 4000);
+        }
+
+        function stopCommunityAuto() {
+          clearInterval(communityAutoTimer);
+        }
+
+        function resetCommunityAuto() {
+          stopCommunityAuto();
+          startCommunityAuto();
+        }
+
+        // Pause on hover (desktop)
+        communitySlider.addEventListener("mouseenter", function () {
+          isPaused = true;
+          stopCommunityAuto();
+        });
+
+        communitySlider.addEventListener("mouseleave", function () {
+          isPaused = false;
+          startCommunityAuto();
+        });
+
+        // Pause on touch (mobile) — resume after interaction ends
+        communitySlider.addEventListener(
+          "touchstart",
+          function () {
+            isPaused = true;
+            stopCommunityAuto();
+          },
+          { passive: true },
+        );
+
+        communitySlider.addEventListener(
+          "touchend",
+          function () {
+            isPaused = false;
+            startCommunityAuto();
+          },
+          { passive: true },
+        );
+
+        // Pause when tab is hidden, resume when visible
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden) {
+            stopCommunityAuto();
+          } else if (!isPaused) {
+            startCommunityAuto();
+          }
+        });
+
+        communityNext.addEventListener("click", function () {
+          nextCommunitySlide();
+          resetCommunityAuto();
+        });
+
+        communityPrev.addEventListener("click", function () {
+          prevCommunitySlide();
+          resetCommunityAuto();
+        });
+
+        // Swipe support for community slider
+        let communityStartX = 0;
+        let communityStartY = 0;
+
+        communityViewport.addEventListener(
+          "touchstart",
+          function (event) {
+            if (!event.touches.length) return;
+            communityStartX = event.touches[0].clientX;
+            communityStartY = event.touches[0].clientY;
+          },
+          { passive: true },
+        );
+
+        communityViewport.addEventListener(
+          "touchend",
+          function (event) {
+            if (!event.changedTouches.length) return;
+
+            const dx = event.changedTouches[0].clientX - communityStartX;
+            const dy = event.changedTouches[0].clientY - communityStartY;
+
+            if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) {
+              if (dx < 0) nextCommunitySlide();
+              else prevCommunitySlide();
+            }
+          },
+          { passive: true },
+        );
+
+        // Open community slides in lightbox
+        communitySlides.forEach(function (slide) {
+          slide.addEventListener("click", function () {
+            const href = slide.dataset.href || "";
+            const match = href.match(/\/file\/d\/([^/]+)/);
+            if (!match) return;
+
+            const image = slide.querySelector("img");
+            showLightbox([match[1]], 0, image ? image.alt : "Community image");
+          });
+        });
+
+        buildCommunityIndicators();
+        updateCommunitySlider();
+        startCommunityAuto();
+
+        closeButton.addEventListener("click", closeLightbox);
+        prevButton.addEventListener("click", function () {
+          stepLightbox(-1);
+        });
+        nextButton.addEventListener("click", function () {
+          stepLightbox(1);
+        });
+
+        modal.addEventListener("click", function (event) {
+          if (event.target === modal) closeLightbox();
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (!modal.classList.contains("is-open")) return;
+
+          if (event.key === "Escape") closeLightbox();
+          if (event.key === "ArrowLeft") stepLightbox(-1);
+          if (event.key === "ArrowRight") stepLightbox(1);
+        });
+
+        modal.addEventListener(
+          "touchstart",
+          function (event) {
+            if (event.touches.length) touchStartX = event.touches[0].clientX;
+          },
+          { passive: true },
+        );
+
+        modal.addEventListener(
+          "touchend",
+          function (event) {
+            if (!event.changedTouches.length) return;
+
+            const delta = event.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(delta) > 55) stepLightbox(delta < 0 ? 1 : -1);
+          },
+          { passive: true },
+        );
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ----- CTA ----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Ready to Rise? | UpBound</title>
+
+    <!-- DM Sans Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --black: #0c0f13;
+        --white: #ffffff;
+        --accent: #09c8ec;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--black);
+        color: var(--white);
+      }
+
+      /* APPLICATION SECTION — shorter height */
+
+      .apply-section {
+        position: relative;
+        width: 100%;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        isolation: isolate;
+        background-color: #000000;
+        background-image:
+          linear-gradient(rgb(6 8 10 / 88%), rgb(6 8 10 / 88%)),
+          url(images/your-background.jpg);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .apply-container {
+        width: 100%;
+        max-width: 1200px;
+        padding: 50px 30px 55px; /* reduced vertical padding */
+        margin: 0 auto;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* EYEBROW TEXT */
+
+      .apply-eyebrow {
+        font-size: 14px;
+        line-height: 1.5;
+        font-weight: 700;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 24px; /* slightly reduced */
+      }
+
+      /* MAIN HEADING */
+
+      .apply-heading {
+        max-width: 850px;
+        margin: 0 auto;
+        font-family: "DM Sans", sans-serif;
+        font-size: clamp(
+          38px,
+          3.8vw,
+          64px
+        ); /* smaller max size for shorter section */
+        line-height: 1.1;
+        font-weight: 400;
+        letter-spacing: -2.2px;
+        color: var(--white);
+      }
+
+      .apply-heading .highlight {
+        color: var(--accent);
+      }
+
+      /* APPLY BUTTON */
+
+      .apply-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 171px;
+        min-height: 62px; /* slightly reduced from 70px */
+        margin-top: 36px; /* reduced from 48px */
+        padding: 18px 32px;
+
+        background: var(--accent);
+        color: #05090c;
+
+        border: 1px solid var(--accent);
+        border-radius: 8px;
+
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 1.3px;
+        text-transform: uppercase;
+        text-decoration: none;
+
+        cursor: pointer;
+        transition:
+          background 0.3s ease,
+          color 0.3s ease,
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .apply-button:hover {
+        background: transparent;
+        color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 30px rgba(9, 200, 236, 0.12);
+      }
+
+      .apply-button:focus-visible {
+        outline: 2px solid var(--white);
+        outline-offset: 5px;
+      }
+
+      /* TABLET */
+
+      @media (max-width: 768px) {
+        .apply-section {
+          min-height: 340px; /* reduced from 480px */
+        }
+
+        .apply-container {
+          padding: 48px 24px;
+        }
+
+        .apply-eyebrow {
+          font-size: 12px;
+          letter-spacing: 2.5px;
+          margin-bottom: 20px;
+        }
+
+        .apply-heading {
+          max-width: 620px;
+          font-size: clamp(36px, 6.5vw, 52px);
+          line-height: 1.12;
+          letter-spacing: -1.6px;
+        }
+
+        .apply-button {
+          min-width: 155px;
+          min-height: 56px;
+          margin-top: 30px;
+          font-size: 15px;
+        }
+      }
+
+      /* MOBILE */
+
+      @media (max-width: 480px) {
+        .apply-section {
+          min-height: 300px; /* reduced from 420px */
+        }
+
+        .apply-container {
+          padding: 42px 20px;
+        }
+
+        .apply-eyebrow {
+          font-size: 10px;
+          letter-spacing: 2px;
+          margin-bottom: 18px;
+        }
+
+        .apply-heading {
+          font-size: clamp(32px, 9vw, 42px);
+          line-height: 1.12;
+          letter-spacing: -1.2px;
+        }
+
+        .apply-button {
+          min-width: 145px;
+          min-height: 52px;
+          padding: 14px 26px;
+          margin-top: 26px;
+          border-radius: 7px;
+          font-size: 14px;
+        }
+      }
+
+      /* REDUCED MOTION */
+
+      @media (prefers-reduced-motion: reduce) {
+        .apply-button {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="apply-section">
+      <div class="apply-container">
+        <p class="apply-eyebrow">READY TO RISE?</p>
+
+        <h1 class="apply-heading">Make Your Next Chapter Count</h1>
+
+        <a href="#application-form" class="apply-button"> Get Started </a>
+      </div>
+    </section>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const applyButton = document.querySelector(".apply-button");
+
+        applyButton.addEventListener("click", function (event) {
+          const target = document.querySelector("#application-form");
+
+          if (target) {
+            event.preventDefault();
+
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ---- Footer ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      UGFX LAB – Footer Pro (centered disclaimer, 1200px, justified)
+    </title>
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .body-footer {
+        background: #000000;
+        font-family: "Inter", Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* ----- footer main ----- */
+      .foot-footer {
+        background: #000000;
+        color: #fff;
+        padding: 48px 36px 24px;
+        border-top: 1px solid #1a1a1a;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      /* ----- DISCLAIMER (top of footer, 1200px, single justified paragraph) ----- */
+      .foot-disclaimer {
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        padding: 0 1.5rem;
+        font-family: "Inter", Arial, sans-serif;
+        font-size: 13px;
+        line-height: 1.75;
+        color: #9e9e9e;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .foot-disclaimer .foot-disclaimer-heading {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #09c8ec;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .foot-disclaimer .foot-disclaimer-heading i {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .foot-disclaimer p {
+        margin: 0;
+        color: #9e9e9e;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      /* subtle divider under the disclaimer */
+      .foot-disclaimer::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #09c8ec, transparent);
+        margin: 18px auto 0;
+        opacity: 0.6;
+      }
+
+      /* ----- footer grid container ----- */
+      .foot-container {
+        max-width: 1335px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.4fr 1fr 1fr 1.2fr;
+        gap: 40px 50px;
+        padding: 0 1.5rem;
+      }
+
+      /* ----- left column (logo + belief) ----- */
+      .foot-left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .foot-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 8px;
+      }
+
+      .foot-logo-img {
+        width: 90px;
+        height: 70px;
+        object-fit: contain;
+        /* filter: brightness(1.05); */
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .foot-brand-name {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: #ffffff;
+        line-height: 1.2;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-brand-name span {
+        color: #09c8ec;
+        font-weight: 400;
+      }
+
+      .foot-belief {
+        margin: 4px 0 14px 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #b0b0b0;
+        max-width: 420px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        padding-left: 14px;
+        border-left: 2px solid #09c8ec;
+        font-style: italic;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-belief i {
+        color: #09c8ec;
+        margin-right: 4px;
+        margin-left: 4px;
+        opacity: 0.7;
+      }
+
+      /* social icons row (left column) */
+      .foot-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 4px;
+      }
+
+      .foot-social-row a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s,
+          box-shadow 0.2s;
+        background: #1a1a1a;
+        border: 1px solid #2a2a2a;
+      }
+
+      .foot-social-row a:hover {
+        transform: scale(1.08);
+        opacity: 0.95;
+        box-shadow: 0 0 0 2px #09c8ec;
+      }
+
+      /* brand colors for icons */
+      .foot-social-row .foot-fb {
+        background: #1877f2;
+        border-color: #1877f2;
+      }
+      .foot-social-row .foot-ig {
+        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+        border-color: transparent;
+      }
+      .foot-social-row .foot-yt {
+        background: #ff0000;
+        border-color: #ff0000;
+      }
+      .foot-social-row .foot-tg {
+        background: #0088cc;
+        border-color: #0088cc;
+      }
+      .foot-social-row .foot-dc {
+        background: #5865f2;
+        border-color: #5865f2;
+      }
+      .foot-social-row .foot-tiktok {
+        background: #000000;
+        border-color: #2a2a2a;
+      }
+      .foot-social-row .foot-x {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        color: #fff;
+        border: 1px solid #333;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .foot-social-row .foot-x svg {
+        width: 17px;
+        height: 17px;
+        display: block;
+      }
+
+      .foot-social-row .foot-x:hover {
+        border-color: #09c8ec;
+        transform: scale(1.08);
+      }
+
+      /* ----- headings & links (company, services, more) ----- */
+      .foot-heading {
+        font-size: 12px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        color: #888888;
+        text-transform: uppercase;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-links a {
+        display: block;
+        color: #b0b0b0;
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 12px;
+        transition:
+          color 0.2s ease,
+          padding-left 0.15s;
+        font-weight: 400;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-links a:hover {
+        color: #09c8ec;
+        padding-left: 4px;
+      }
+
+      /* ----- bottom bar (copyright + credit) ----- */
+      .foot-bottom {
+        max-width: 1400px;
+        margin: 28px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #1a1a1a;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #888888;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-bottom .foot-copy a {
+        color: #09c8ec;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .foot-bottom .foot-copy a:hover {
+        color: #7adef2;
+      }
+
+      .foot-bottom .foot-credit a {
+        color: #09c8ec;
+        text-decoration: none;
+        font-weight: 400;
+        border-bottom: 1px dotted #444;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .foot-bottom .foot-credit a:hover {
+        color: #7adef2;
+        border-bottom-color: #09c8ec;
+      }
+
+      /* contact details block (optional, commented in HTML) */
+      .foot-contact-details {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid #1a1a1a;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #a0a0a0;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-contact-details a {
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-contact-details a:hover {
+        color: #09c8ec;
+      }
+      .foot-contact-details i {
+        width: 18px;
+        color: #09c8ec;
+        opacity: 0.9;
+        margin-right: 6px;
+      }
+
+      /* ----- responsive: 2 columns in a row (tablet) ----- */
+      @media (max-width: 1100px) {
+        .foot-container {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px 24px;
+          padding: 0 0.5rem;
+        }
+        .foot-left {
+          grid-column: 1 / -1;
+        }
+        .foot-belief {
+          max-width: 100%;
+        }
+        .foot-disclaimer {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-bottom: 28px;
+        }
+      }
+
+      /* small screens: single column */
+      @media (max-width: 700px) {
+        .foot-footer {
+          padding: 36px 18px 20px;
+        }
+
+        .foot-disclaimer {
+          font-size: 12px;
+          margin-bottom: 24px;
+          line-height: 1.7;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+
+        .foot-disclaimer .foot-disclaimer-heading {
+          font-size: 12px;
+        }
+
+        .foot-container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px 16px;
+          padding: 0;
+        }
+
+        .foot-left {
+          grid-column: 1 / -1;
+        }
+
+        .foot-container > .foot-links:nth-child(2),
+        .foot-container > .foot-links:nth-child(3) {
+          grid-column: auto;
+        }
+
+        .foot-container > .foot-links:nth-child(4) {
+          grid-column: 1 / -1;
+        }
+
+        .foot-brand-name {
+          font-size: 20px;
+        }
+
+        .foot-logo-img {
+          width: 160px;
+          height: 42px;
+        }
+
+        .foot-social-row a {
+          width: 38px;
+          height: 38px;
+          font-size: 15px;
+        }
+
+        .foot-bottom {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+          margin-top: 24px;
+          padding-top: 16px;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .foot-belief {
+          padding-left: 12px;
+          font-size: 13px;
+        }
+
+        .foot-contact-details {
+          font-size: 12px;
+        }
+
+        .foot-heading {
+          font-size: 11px;
+          margin-bottom: 16px;
+        }
+
+        .foot-links a {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .foot-brand {
+          flex-wrap: wrap;
+        }
+        .foot-logo-img {
+          width: 120px;
+          height: 36px;
+        }
+        .foot-brand-name {
+          font-size: 18px;
+        }
+        .foot-social-row {
+          gap: 8px;
+        }
+        .foot-social-row a {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+        }
+        .foot-disclaimer {
+          font-size: 11.5px;
+        }
+      }
+
+      /* fix for X icon (Font Awesome 6) – not strictly needed but kept */
+      .fa-x-twitter::before {
+        content: "\e9ca";
+        font-family: "Font Awesome 6 Brands";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body-footer">
+      <footer class="foot-footer">
+        <!-- ========== DISCLAIMER (very top, 1200px, single justified paragraph) ========== -->
+        <div class="foot-disclaimer">
+          <div class="foot-disclaimer-heading">
+            <i class="fas fa-exclamation-triangle"></i> DISCLAIMER
+          </div>
+          <p>
+            All content provided by UGFXLAB is for educational and informational
+            purposes only and does not constitute financial or investment
+            advice. UGFXLAB is not a licensed financial advisor or investment
+            management firm. Trading in financial markets involves substantial
+            risk and may result in the loss of capital. Past performance,
+            including trading results, payouts, and student achievements
+            displayed on this website, does not guarantee future results or
+            individual success. All trading decisions are made at your own
+            discretion and risk. We encourage traders to conduct their own
+            research, practice responsible risk management, and seek independent
+            professional advice where necessary.
+          </p>
+        </div>
+
+        <!-- ========== MAIN FOOTER GRID ========== -->
+        <div class="foot-container">
+          <!-- LEFT column: logo + name + belief + socials + contacts -->
+          <div class="foot-left">
+            <div class="foot-brand">
+              <!-- replace src with your actual logo path -->
+              <img
+                class="foot-logo-img"
+                src="Photos/logo-Photoroom-1.png"
+                alt="UGFX LAB logo"
+              />
+              <!-- <span class="foot-brand-name">UGFX<span> LAB</span></span> -->
+            </div>
+
+            <div class="foot-belief">
+              <i
+                class="fas fa-quote-left"
+                style="opacity: 0.5; font-size: 12px"
+              ></i>
+              Take the Risk<br />
+              or Lose the Chance
+              <i
+                class="fas fa-quote-right"
+                style="opacity: 0.5; font-size: 12px"
+              ></i>
+            </div>
+
+            <!-- Social icons (left column) -->
+            <div class="foot-social-row">
+              <a
+                href="https://www.youtube.com/@fxlabtrades"
+                class="foot-yt"
+                aria-label="YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://t.me/ugfxlab"
+                class="foot-tg"
+                aria-label="Telegram channel"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-telegram-plane"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/fxlabtrades/"
+                class="foot-ig"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@fxlabtrades"
+                class="foot-tiktok"
+                aria-label="TikTok"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/fxlabtrades"
+                class="foot-fb"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://x.com/fxlabtrades"
+                class="foot-x"
+                aria-label="X (Twitter)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M18.901 1.153h3.308l-7.227 8.26 8.502 11.243h-6.657l-5.214-6.817-5.968 6.817H2.335l7.73-8.835L1.91 1.153h6.826l4.713 6.231zM17.74 18.677h1.833L7.084 3.027H5.117z"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Contact details (kept commented as in original) -->
+            <!-- <div class="foot-contact-details"> ... </div> -->
+          </div>
+
+          <!-- COMPANY / HOME / ABOUT / COMMUNITY ... -->
+          <div class="foot-links">
+            <h3 class="foot-heading">COMPANY</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#about-founder">About</a>
+            <a href="ComingSoon.html">Community</a>
+            <a href="ComingSoon.html">Mentorship</a>
+            <a href="index.html#student-results">Results</a>
+            <a href="index.html#ContactUs">Contact</a>
+          </div>
+
+          <!-- SERVICES / FXLABTRADES / THE LAB / 1-ON-1 MENTORSHIP -->
+          <div class="foot-links">
+            <h3 class="foot-heading">SERVICES</h3>
+            <a href="ComingSoon.html">FXLABTRADES</a>
+            <a href="ComingSoon.html">THE LAB</a>
+            <a href="ComingSoon.html">1-ON-1 MENTORSHIP</a>
+          </div>
+
+          <!-- MORE -->
+          <div class="foot-links">
+            <h3 class="foot-heading">MORE</h3>
+            <a href="ComingSoon.html">Terms of Service</a>
+            <a href="ComingSoon.html">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="foot-bottom">
+          <div class="foot-copy">
+            &copy; 2026
+            <a href="https://ugfxlab.com/">UGFX LAB</a> — All Rights Reserved
+          </div>
+          <div class="foot-credit">
+            Designed by
+            <a
+              href="https://skilled-va.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Skilled VA</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

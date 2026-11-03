@@ -1,0 +1,1883 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More Testimonials | UGFX LAB</title>
+    <link
+      rel="shortcut icon"
+      href="Photos/logo-Photoroom.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body></body>
+</html>
+
+<!-- --- header ---  -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB</title>
+    <link
+      rel="shortcut icon"
+      href="Photos/logo-Photoroom.png"
+      type="image/x-icon"
+    />
+    <!-- Google Font & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #02090e;
+        color: #ffffff;
+      }
+
+      /* ===== SCROLL LOCK (robust — works on iOS & desktop) ===== */
+      body.menu-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* ===== NAVBAR — professional, compact ===== */
+      .navbar {
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        background: #02090e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        height: 76px;
+        background: rgba(2, 9, 14, 0.96);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* ===== BRAND — tighter ===== */
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 240px;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 78px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-name {
+        margin-left: 11px;
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #f0f4f7;
+      }
+
+      .brand-name span {
+        color: #09c8ec;
+      }
+
+      /* ===== NAVIGATION — reduced font, balanced spacing ===== */
+      .nav-menu {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 38px;
+      }
+
+      .nav-link {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #eef2f5;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      /* Right angle arrow — pinned to the very right edge */
+      .nav-link .nav-arrow {
+        position: absolute;
+        right: -18px;
+        top: 50%;
+        transform: translateY(-50%) translateX(-4px);
+        font-size: 16px;
+        color: #09c8ec;
+        opacity: 0;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+        pointer-events: none;
+      }
+
+      .nav-link:hover {
+        color: #09c8ec;
+      }
+
+      /* .nav-link:hover .nav-arrow {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      } */
+
+      /* Active underline – slimmer & closer to text */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 26px;
+        height: 3px;
+        border-radius: 20px;
+        background: #09c8ec;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+
+      /* ===== JOIN BUTTON — compact, refined ===== */
+      .community-btn {
+        min-width: 190px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 18px;
+        background: #09c8ec;
+        color: #031017;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+        transition: all 0.25s ease;
+      }
+
+      .community-btn i {
+        font-size: 20px;
+      }
+
+      .community-btn:hover {
+        transform: translateY(-2px);
+        background: #1ad9f2;
+        box-shadow: 0 8px 25px rgba(11, 210, 237, 0.2);
+      }
+
+      /* ===== MOBILE TOGGLE ===== */
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      /* ===== MOBILE MENU ===== */
+      .mobile-menu {
+        display: none;
+      }
+
+      /* ===== TABLET (≤1250px) ===== */
+      @media (max-width: 1250px) {
+        .navbar {
+          padding: 0 3%;
+        }
+
+        .brand {
+          min-width: 200px;
+        }
+
+        .brand img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .brand-name {
+          font-size: 23px;
+          margin-left: 9px;
+        }
+
+        .nav-menu {
+          gap: 22px;
+        }
+
+        .nav-link {
+          font-size: 14px;
+        }
+
+        .nav-link .nav-arrow {
+          right: -14px;
+          font-size: 14px;
+        }
+
+        .nav-link::after {
+          bottom: 22px;
+          height: 3px;
+        }
+
+        .community-btn {
+          min-width: 200px;
+          height: 46px;
+          font-size: 14px;
+          padding: 0 18px;
+        }
+
+        .community-btn i {
+          font-size: 18px;
+        }
+      }
+
+      /* ===== MOBILE (≤1050px) ===== */
+      @media (max-width: 1050px) {
+        .navbar {
+          height: 78px;
+        }
+
+        .navbar.scrolled {
+          height: 62px;
+        }
+
+        .nav-menu,
+        .community-btn {
+          display: none;
+        }
+
+        .brand {
+          min-width: auto;
+        }
+
+        .brand img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .brand-name {
+          font-size: 22px;
+          letter-spacing: -0.8px;
+          margin-left: 8px;
+        }
+
+        .menu-toggle {
+          display: flex;
+          margin-left: auto;
+        }
+
+        /* Mobile dropdown */
+        .mobile-menu {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          width: 100%;
+          padding: 18px 6% 28px;
+          background: #02090e;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 999;
+          transform: translateY(-120%);
+          transition: transform 0.35s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+          box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.6);
+          /* Keep menu from scrolling the page behind it */
+          overscroll-behavior: contain;
+          max-height: calc(100vh - 78px);
+          overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+        }
+
+        .mobile-menu a {
+          color: #ffffff;
+          text-decoration: none;
+          padding: 14px 4px;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        /* Icons appear ONLY in the mobile menu */
+        .mobile-menu a .m-icon {
+          width: 18px;
+          text-align: center;
+          color: #7a8a94;
+          font-size: 14px;
+        }
+
+        /* Angle arrow pushed to the far right of each mobile link */
+        .mobile-menu a .m-arrow {
+          margin-left: auto;
+          color: #09c8ec;
+          font-size: 16px;
+        }
+
+        .mobile-menu a:hover {
+          color: #09c8ec;
+        }
+
+        .mobile-menu a:hover .m-icon {
+          color: #09c8ec;
+        }
+
+        .mobile-community-btn {
+          margin-top: 14px;
+          background: #09c8ec;
+          color: #021017 !important;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 700 !important;
+          border: none !important;
+          padding: 14px 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 15px;
+        }
+
+        .mobile-community-btn .m-icon {
+          color: #021017;
+        }
+      }
+
+      /* ===== SMALL MOBILE (≤550px) ===== */
+      @media (max-width: 550px) {
+        .navbar {
+          padding: 0 16px;
+        }
+
+        .brand img {
+          width: 110px;
+          height: 55px;
+        }
+
+        .brand-name {
+          font-size: 19px;
+          letter-spacing: -0.5px;
+          margin-left: 7px;
+        }
+
+        .mobile-menu {
+          top: 78px;
+          padding: 16px 5% 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="navbar" id="navbar">
+      <!-- LOGO + NAME -->
+      <a href="#" class="brand">
+        <img src="Photos/logo-Photoroom-1.png" alt="UGFXLAB Logo" />
+        <!-- <span class="brand-name">UGFX<span>LAB</span></span> -->
+      </a>
+
+      <!-- DESKTOP NAV (text only — no icons) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">
+          <span>Home</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#about-founder" class="nav-link">
+          <span>About</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="Community.html" class="nav-link">
+          <span>Community</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="Lab.html" class="nav-link">
+          <span>The LAB</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="FreeTools.html" class="nav-link">
+          <span>Free Tools</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#student-results" class="nav-link">
+          <span>Results</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#ContactUs" class="nav-link">
+          <span>Contact</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+      </nav>
+
+      <!-- JOIN BUTTON -->
+      <a href="https://t.me/ugfxlab" class="community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        <span>Join Free Community</span>
+      </a>
+
+      <!-- HAMBURGER -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MOBILE NAV (with icons) -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">
+        <i class="fa-solid fa-house m-icon"></i>
+        <span>Home</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#about-founder">
+        <i class="fa-solid fa-circle-info m-icon"></i>
+        <span>About</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-users m-icon"></i>
+        <span>Community</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-flask m-icon"></i>
+        <span>THE LAB</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-toolbox m-icon"></i>
+        <span>Free Tools</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#student-results">
+        <i class="fa-solid fa-chart-line m-icon"></i>
+        <span>Results</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#ContactUs">
+        <i class="fa-solid fa-envelope m-icon"></i>
+        <span>Contact</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="https://t.me/ugfxlab" class="mobile-community-btn">
+        <i class="fa-brands fa-telegram m-icon"></i>
+        &nbsp; Join Free Community
+      </a>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      (function () {
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle — with robust scroll lock
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        let scrollPosition = 0;
+
+        function lockScroll() {
+          // Remember current scroll position
+          scrollPosition =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+          // Prevent the page from shifting horizontally (scrollbar width)
+          const scrollbarWidth =
+            window.innerWidth - document.documentElement.clientWidth;
+          document.body.style.paddingRight = scrollbarWidth + "px";
+
+          // Freeze the page at the current position
+          document.body.style.top = -scrollPosition + "px";
+          document.body.classList.add("menu-open");
+        }
+
+        function unlockScroll() {
+          document.body.classList.remove("menu-open");
+          document.body.style.top = "";
+          document.body.style.paddingRight = "";
+
+          // Restore scroll position without animation jump
+          window.scrollTo(0, scrollPosition);
+        }
+
+        menuToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          const isOpen = mobileMenu.classList.toggle("open");
+          if (isOpen) {
+            lockScroll();
+          } else {
+            unlockScroll();
+          }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll(".mobile-menu a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+            unlockScroll();
+          });
+        });
+
+        // Active link switching (desktop)
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            navLinks.forEach(function (item) {
+              item.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- floating icons---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating social · icons only</title>
+    <!-- Font Awesome 6 (free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* minimal reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .body-icons {
+        background: #0b0f14; /* deep dark background */
+        /* min-height: 100vh; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, sans-serif;
+      }
+
+      /* floating wrapper – fixed bottom right */
+      .floating-social {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      /* toggle button (main circle) */
+      .social-toggle {
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: #004b9e;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.9rem;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6);
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        outline: none;
+      }
+
+      .social-toggle:hover {
+        background: #2c3e52;
+        transform: scale(1.04);
+      }
+
+      .social-toggle:active {
+        transform: scale(0.96);
+      }
+
+      /* menu container – appears above the toggle */
+      .social-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.9);
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        pointer-events: none;
+        /* keep it above the button in stacking */
+        order: -1; /* ensures it appears before toggle in flex column */
+      }
+
+      /* when active */
+      .floating-social.active .social-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      /* individual icon buttons – circular */
+      .social-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        /* /* background: #1e2a3a; */
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .social-icon.telegram {
+        background: #26a5e4;
+        color: white;
+      }
+
+      /* hover effects per brand */
+      .social-icon.telegram:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(38, 165, 228, 0.35);
+      }
+      .social-icon.whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .social-icon.whatsapp:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(37, 211, 102, 0.35);
+      }
+
+      /* icon colours inside (when not hovered) */
+      /* .social-icon.telegram i {
+        color: #26a5e4;
+        transition: color 0.2s;
+      }
+
+      .social-icon.whatsapp i {
+        color: #25d366;
+        transition: color 0.2s;
+      } */
+
+      /* on hover, the icon inside becomes white (since bg becomes brand colour) */
+      /* .social-icon.telegram:hover i,
+      .social-icon.whatsapp:hover i {
+        color: #ffffff;
+      } */
+
+      /* small mobile adjust */
+      @media (max-width: 500px) {
+        .floating-social {
+          bottom: 1.2rem;
+          right: 1.2rem;
+          gap: 0.6rem;
+        }
+
+        .social-toggle {
+          width: 56px;
+          height: 56px;
+          font-size: 1.7rem;
+        }
+
+        .social-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="body-icons">
+      <!-- floating widget: toggle + icons (no text) -->
+      <div class="floating-social" id="floatingSocial">
+        <!-- social menu (appears above due to order: -1) -->
+        <div class="social-menu" id="socialMenu">
+          <!-- Telegram channel -->
+          <a
+            href="https://t.me/fxlab_admin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon telegram"
+            aria-label="Telegram channel"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <!-- WhatsApp link -->
+          <a
+            href="https://wa.me/message/A6ENZ2W5UUSJK1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon whatsapp"
+            aria-label="WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+
+        <!-- main toggle button -->
+        <button
+          class="social-toggle"
+          id="toggleBtn"
+          aria-label="Social media menu"
+          aria-expanded="false"
+        >
+          <!-- <i class="fas fa-share-alt"></i> -->
+          <i class="fa-solid fa-comment"></i>
+        </button>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const container = document.getElementById("floatingSocial");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const socialMenu = document.getElementById("socialMenu");
+
+        // Toggle active class (menu appears above)
+        function toggleMenu() {
+          const isActive = container.classList.toggle("active");
+          toggleBtn.setAttribute("aria-expanded", isActive);
+        }
+
+        // Click on main button
+        toggleBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (e) {
+          if (!container.contains(e.target)) {
+            if (container.classList.contains("active")) {
+              container.classList.remove("active");
+              toggleBtn.setAttribute("aria-expanded", "false");
+            }
+          }
+        });
+
+        // Stop propagation on menu clicks (so clicking the icons doesn't close before navigation)
+        socialMenu.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        // close with Escape
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && container.classList.contains("active")) {
+            container.classList.remove("active");
+            toggleBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- main section ----  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>More Testimonials</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: #030303;
+        color: #fff;
+        font-family: "DM Sans", sans-serif;
+      }
+
+      .testimonials-section {
+        width: 100%;
+        padding: 135px 25px 99px;
+        background: #030303;
+      }
+
+      .testimonials-container {
+        max-width: 1050px;
+        margin: auto;
+      }
+
+      /* Heading */
+
+      .section-heading {
+        text-align: center;
+        margin-bottom: 55px;
+      }
+
+      .section-heading h1 {
+        color: #fff;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+        font-size: 49px;
+        line-height: 0.95;
+        font-weight: 700;
+        letter-spacing: -2px;
+        white-space: nowrap;
+      }
+
+      .section-heading h1 span {
+        color: #09c8ec;
+      }
+
+      .heading-line {
+        width: 65px;
+        height: 3px;
+        background: #09c8ec;
+        margin: 16px auto 0;
+        border-radius: 5px;
+      }
+
+      /* Image Grid */
+
+      .testimonial-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+
+      .testimonial-card {
+        position: relative;
+        overflow: hidden;
+        border-radius: 12px;
+        background: #101010;
+        border: 1px solid rgba(9, 200, 236, 0.15);
+        cursor: pointer;
+        transition: 0.35s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-6px);
+        border-color: #09c8ec;
+        box-shadow: 0 10px 35px rgba(9, 200, 236, 0.13);
+      }
+
+      .testimonial-card img {
+        display: block;
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: top center;
+        transition: transform 0.5s ease;
+      }
+
+      .testimonial-card:hover img {
+        transform: scale(1.035);
+      }
+
+      /* Hover Overlay */
+
+      .image-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(0, 0, 0, 0.65),
+          transparent 40%
+        );
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding: 20px;
+        opacity: 0;
+        transition: 0.3s ease;
+      }
+
+      .testimonial-card:hover .image-overlay {
+        opacity: 1;
+      }
+
+      .view-text {
+        color: #fff;
+        font-size: 13px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .view-text span {
+        color: #09c8ec;
+        font-size: 18px;
+      }
+
+      /* Lightbox */
+
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.96);
+        z-index: 9999;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 35px;
+      }
+
+      .lightbox.active {
+        display: flex;
+      }
+
+      .lightbox img {
+        max-width: 90%;
+        max-height: 88vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(9, 200, 236, 0.12);
+      }
+
+      .close-lightbox {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 38px;
+        color: #fff;
+        cursor: pointer;
+        background: none;
+        border: none;
+        transition: 0.3s;
+        line-height: 1;
+      }
+
+      .close-lightbox:hover {
+        color: #09c8ec;
+      }
+
+      @media (max-width: 900px) {
+        .testimonial-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+
+        .testimonial-card img {
+          height: 340px;
+        }
+      }
+
+      @media (max-width: 550px) {
+        .testimonials-section {
+          padding: 65px 16px 70px;
+        }
+
+        .section-heading {
+          margin-bottom: 35px;
+        }
+
+        .testimonial-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 12px;
+        }
+
+        .testimonial-card {
+          border-radius: 8px;
+        }
+
+        .testimonial-card img {
+          height: 230px;
+        }
+
+        .image-overlay {
+          opacity: 1;
+          padding: 10px;
+        }
+
+        .view-text {
+          font-size: 10px;
+        }
+
+        .lightbox {
+          padding: 15px;
+        }
+
+        .lightbox img {
+          max-width: 100%;
+          max-height: 82vh;
+        }
+
+        .close-lightbox {
+          top: 12px;
+          right: 18px;
+        }
+      }
+
+      @media (max-width: 350px) {
+        .testimonial-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .testimonial-card img {
+          height: auto;
+          max-height: 400px;
+          object-fit: contain;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <section class="testimonials-section">
+      <div class="testimonials-container">
+        <div class="section-heading">
+          <h1>More <span>Testimonials</span></h1>
+          <div class="heading-line"></div>
+        </div>
+
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <img src="Photos/ViewMore/1.png" alt="Testimonial 1" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/ViewMore/2.png" alt="Testimonial 2" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/ViewMore/3.png" alt="Testimonial 3" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/ViewMore/4.png" alt="Testimonial 4" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/ViewMore/5.png" alt="Testimonial 5" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/500K IC FUNDED/1.png" alt="Testimonial 6" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/500K IC FUNDED/2.png" alt="Testimonial 7" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/500K IC FUNDED/3.png" alt="Testimonial 8" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <img src="Photos/Payout/5K1.PNG" alt="Testimonial 9" />
+            <div class="image-overlay">
+              <div class="view-text"><span>+</span> View Full Image</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Full Image Lightbox -->
+
+    <div class="lightbox" id="lightbox">
+      <button class="close-lightbox" id="closeLightbox" aria-label="Close">
+        &times;
+      </button>
+      <img src="" alt="Full Testimonial" id="lightboxImage" />
+    </div>
+
+    <script>
+      const cards = document.querySelectorAll(".testimonial-card");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightboxImage");
+      const closeBtn = document.getElementById("closeLightbox");
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const img = card.querySelector("img");
+
+          lightboxImage.src = img.src;
+          lightboxImage.alt = img.alt;
+
+          lightbox.classList.add("active");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        lightboxImage.src = "";
+        document.body.style.overflow = "";
+      }
+
+      closeBtn.addEventListener("click", closeLightbox);
+
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("active")) {
+          closeLightbox();
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<!-- ---- Footer ---  -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      UGFX LAB – Footer Pro (centered disclaimer, 1200px, justified)
+    </title>
+    <!-- Google Font (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome 6 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .body-footer {
+        background: #000000;
+        font-family: "Inter", Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+      }
+
+      /* ----- footer main ----- */
+      .foot-footer {
+        background: #000000;
+        color: #fff;
+        padding: 48px 36px 24px;
+        border-top: 1px solid #1a1a1a;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      /* ----- DISCLAIMER (top of footer, 1200px, single justified paragraph) ----- */
+      .foot-disclaimer {
+        max-width: 1200px;
+        margin: 0 auto 60px;
+        padding: 0 1.5rem;
+        font-family: "Inter", Arial, sans-serif;
+        font-size: 13px;
+        line-height: 1.75;
+        color: #9e9e9e;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      .foot-disclaimer .foot-disclaimer-heading {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        color: #09c8ec;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+      }
+
+      .foot-disclaimer .foot-disclaimer-heading i {
+        font-size: 14px;
+        opacity: 0.9;
+      }
+
+      .foot-disclaimer p {
+        margin: 0;
+        color: #9e9e9e;
+        text-align: justify;
+        text-justify: inter-word;
+      }
+
+      /* subtle divider under the disclaimer */
+      .foot-disclaimer::after {
+        content: "";
+        display: block;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #09c8ec, transparent);
+        margin: 18px auto 0;
+        opacity: 0.6;
+      }
+
+      /* ----- footer grid container ----- */
+      .foot-container {
+        max-width: 1335px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 2.4fr 1fr 1fr 1.2fr;
+        gap: 40px 50px;
+        padding: 0 1.5rem;
+      }
+
+      /* ----- left column (logo + belief) ----- */
+      .foot-left {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .foot-brand {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 8px;
+      }
+
+      .foot-logo-img {
+        width: 90px;
+        height: 70px;
+        object-fit: contain;
+        /* filter: brightness(1.05); */
+        display: block;
+        flex-shrink: 0;
+      }
+
+      .foot-brand-name {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.3px;
+        color: #ffffff;
+        line-height: 1.2;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-brand-name span {
+        color: #09c8ec;
+        font-weight: 400;
+      }
+
+      .foot-belief {
+        margin: 4px 0 14px 0;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #b0b0b0;
+        max-width: 420px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+        padding-left: 14px;
+        border-left: 2px solid #09c8ec;
+        font-style: italic;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-belief i {
+        color: #09c8ec;
+        margin-right: 4px;
+        margin-left: 4px;
+        opacity: 0.7;
+      }
+
+      /* social icons row (left column) */
+      .foot-social-row {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+        margin-top: 4px;
+      }
+
+      .foot-social-row a {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 16px;
+        text-decoration: none;
+        transition:
+          transform 0.2s ease,
+          opacity 0.2s,
+          box-shadow 0.2s;
+        background: #1a1a1a;
+        border: 1px solid #2a2a2a;
+      }
+
+      .foot-social-row a:hover {
+        transform: scale(1.08);
+        opacity: 0.95;
+        box-shadow: 0 0 0 2px #09c8ec;
+      }
+
+      /* brand colors for icons */
+      .foot-social-row .foot-fb {
+        background: #1877f2;
+        border-color: #1877f2;
+      }
+      .foot-social-row .foot-ig {
+        background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+        border-color: transparent;
+      }
+      .foot-social-row .foot-yt {
+        background: #ff0000;
+        border-color: #ff0000;
+      }
+      .foot-social-row .foot-tg {
+        background: #0088cc;
+        border-color: #0088cc;
+      }
+      .foot-social-row .foot-dc {
+        background: #5865f2;
+        border-color: #5865f2;
+      }
+      .foot-social-row .foot-tiktok {
+        background: #000000;
+        border-color: #2a2a2a;
+      }
+      .foot-social-row .foot-x {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #000;
+        color: #fff;
+        border: 1px solid #333;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .foot-social-row .foot-x svg {
+        width: 17px;
+        height: 17px;
+        display: block;
+      }
+
+      .foot-social-row .foot-x:hover {
+        border-color: #09c8ec;
+        transform: scale(1.08);
+      }
+
+      /* ----- headings & links (company, services, more) ----- */
+      .foot-heading {
+        font-size: 12px;
+        margin-bottom: 20px;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        color: #888888;
+        text-transform: uppercase;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-links a {
+        display: block;
+        color: #b0b0b0;
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 12px;
+        transition:
+          color 0.2s ease,
+          padding-left 0.15s;
+        font-weight: 400;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-links a:hover {
+        color: #09c8ec;
+        padding-left: 4px;
+      }
+
+      /* ----- bottom bar (copyright + credit) ----- */
+      .foot-bottom {
+        max-width: 1400px;
+        margin: 28px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #1a1a1a;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 13px;
+        color: #888888;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        font-family: "Inter", Arial, sans-serif;
+      }
+
+      .foot-bottom .foot-copy a {
+        color: #09c8ec;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+      .foot-bottom .foot-copy a:hover {
+        color: #7adef2;
+      }
+
+      .foot-bottom .foot-credit a {
+        color: #09c8ec;
+        text-decoration: none;
+        font-weight: 400;
+        border-bottom: 1px dotted #444;
+        transition:
+          color 0.2s,
+          border-color 0.2s;
+      }
+      .foot-bottom .foot-credit a:hover {
+        color: #7adef2;
+        border-bottom-color: #09c8ec;
+      }
+
+      /* contact details block (optional, commented in HTML) */
+      .foot-contact-details {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid #1a1a1a;
+        font-size: 13px;
+        line-height: 1.7;
+        color: #a0a0a0;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-contact-details a {
+        color: #b0b0b0;
+        text-decoration: none;
+        transition: color 0.2s;
+        font-family: "Inter", Arial, sans-serif;
+      }
+      .foot-contact-details a:hover {
+        color: #09c8ec;
+      }
+      .foot-contact-details i {
+        width: 18px;
+        color: #09c8ec;
+        opacity: 0.9;
+        margin-right: 6px;
+      }
+
+      /* ----- responsive: 2 columns in a row (tablet) ----- */
+      @media (max-width: 1100px) {
+        .foot-container {
+          grid-template-columns: 1fr 1fr;
+          gap: 32px 24px;
+          padding: 0 0.5rem;
+        }
+        .foot-left {
+          grid-column: 1 / -1;
+        }
+        .foot-belief {
+          max-width: 100%;
+        }
+        .foot-disclaimer {
+          padding-left: 1rem;
+          padding-right: 1rem;
+          margin-bottom: 28px;
+        }
+      }
+
+      /* small screens: single column */
+      @media (max-width: 700px) {
+        .foot-footer {
+          padding: 36px 18px 20px;
+        }
+
+        .foot-disclaimer {
+          font-size: 12px;
+          margin-bottom: 24px;
+          line-height: 1.7;
+          padding-left: 0.5rem;
+          padding-right: 0.5rem;
+        }
+
+        .foot-disclaimer .foot-disclaimer-heading {
+          font-size: 12px;
+        }
+
+        .foot-container {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 24px 16px;
+          padding: 0;
+        }
+
+        .foot-left {
+          grid-column: 1 / -1;
+        }
+
+        .foot-container > .foot-links:nth-child(2),
+        .foot-container > .foot-links:nth-child(3) {
+          grid-column: auto;
+        }
+
+        .foot-container > .foot-links:nth-child(4) {
+          grid-column: 1 / -1;
+        }
+
+        .foot-brand-name {
+          font-size: 20px;
+        }
+
+        .foot-logo-img {
+          width: 160px;
+          height: 42px;
+        }
+
+        .foot-social-row a {
+          width: 38px;
+          height: 38px;
+          font-size: 15px;
+        }
+
+        .foot-bottom {
+          flex-direction: column;
+          gap: 10px;
+          text-align: center;
+          margin-top: 24px;
+          padding-top: 16px;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        .foot-belief {
+          padding-left: 12px;
+          font-size: 13px;
+        }
+
+        .foot-contact-details {
+          font-size: 12px;
+        }
+
+        .foot-heading {
+          font-size: 11px;
+          margin-bottom: 16px;
+        }
+
+        .foot-links a {
+          font-size: 13px;
+          margin-bottom: 10px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        .foot-brand {
+          flex-wrap: wrap;
+        }
+        .foot-logo-img {
+          width: 120px;
+          height: 36px;
+        }
+        .foot-brand-name {
+          font-size: 18px;
+        }
+        .foot-social-row {
+          gap: 8px;
+        }
+        .foot-social-row a {
+          width: 34px;
+          height: 34px;
+          font-size: 14px;
+        }
+        .foot-disclaimer {
+          font-size: 11.5px;
+        }
+      }
+
+      /* fix for X icon (Font Awesome 6) – not strictly needed but kept */
+      .fa-x-twitter::before {
+        content: "\e9ca";
+        font-family: "Font Awesome 6 Brands";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="body-footer">
+      <footer class="foot-footer">
+        <!-- ========== DISCLAIMER (very top, 1200px, single justified paragraph) ========== -->
+        <div class="foot-disclaimer">
+          <div class="foot-disclaimer-heading">
+            <i class="fas fa-exclamation-triangle"></i> DISCLAIMER
+          </div>
+          <p>
+            All content provided by UGFXLAB is for educational and informational
+            purposes only and does not constitute financial or investment
+            advice. UGFXLAB is not a licensed financial advisor or investment
+            management firm. Trading in financial markets involves substantial
+            risk and may result in the loss of capital. Past performance,
+            including trading results, payouts, and student achievements
+            displayed on this website, does not guarantee future results or
+            individual success. All trading decisions are made at your own
+            discretion and risk. We encourage traders to conduct their own
+            research, practice responsible risk management, and seek independent
+            professional advice where necessary.
+          </p>
+        </div>
+
+        <!-- ========== MAIN FOOTER GRID ========== -->
+        <div class="foot-container">
+          <!-- LEFT column: logo + name + belief + socials + contacts -->
+          <div class="foot-left">
+            <div class="foot-brand">
+              <!-- replace src with your actual logo path -->
+              <img
+                class="foot-logo-img"
+                src="Photos/logo-Photoroom-1.png"
+                alt="UGFX LAB logo"
+              />
+              <!-- <span class="foot-brand-name">UGFX<span> LAB</span></span> -->
+            </div>
+
+            <div class="foot-belief">
+              <i
+                class="fas fa-quote-left"
+                style="opacity: 0.5; font-size: 12px"
+              ></i>
+              Take the Risk<br />
+              or Lose the Chance
+              <i
+                class="fas fa-quote-right"
+                style="opacity: 0.5; font-size: 12px"
+              ></i>
+            </div>
+
+            <!-- Social icons (left column) -->
+            <div class="foot-social-row">
+              <a
+                href="https://www.youtube.com/@fxlabtrades"
+                class="foot-yt"
+                aria-label="YouTube"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-youtube"></i
+              ></a>
+              <a
+                href="https://t.me/ugfxlab"
+                class="foot-tg"
+                aria-label="Telegram channel"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-telegram-plane"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/fxlabtrades/"
+                class="foot-ig"
+                aria-label="Instagram"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="https://www.tiktok.com/@fxlabtrades"
+                class="foot-tiktok"
+                aria-label="TikTok"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-tiktok"></i
+              ></a>
+              <a
+                href="https://www.facebook.com/fxlabtrades"
+                class="foot-fb"
+                aria-label="Facebook"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="https://x.com/fxlabtrades"
+                class="foot-x"
+                aria-label="X (Twitter)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M18.901 1.153h3.308l-7.227 8.26 8.502 11.243h-6.657l-5.214-6.817-5.968 6.817H2.335l7.73-8.835L1.91 1.153h6.826l4.713 6.231zM17.74 18.677h1.833L7.084 3.027H5.117z"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Contact details (kept commented as in original) -->
+            <!-- <div class="foot-contact-details"> ... </div> -->
+          </div>
+
+          <!-- COMPANY / HOME / ABOUT / COMMUNITY ... -->
+          <div class="foot-links">
+            <h3 class="foot-heading">COMPANY</h3>
+            <a href="index.html">Home</a>
+            <a href="index.html#about-founder">About</a>
+            <a href="ComingSoon.html">Community</a>
+            <a href="ComingSoon.html">Mentorship</a>
+            <a href="index.html#student-results">Results</a>
+            <a href="index.html#ContactUs">Contact</a>
+          </div>
+
+          <!-- SERVICES / FXLABTRADES / THE LAB / 1-ON-1 MENTORSHIP -->
+          <div class="foot-links">
+            <h3 class="foot-heading">SERVICES</h3>
+            <a href="ComingSoon.html">FXLABTRADES</a>
+            <a href="ComingSoon.html">THE LAB</a>
+            <a href="ComingSoon.html">1-ON-1 MENTORSHIP</a>
+          </div>
+
+          <!-- MORE -->
+          <div class="foot-links">
+            <h3 class="foot-heading">MORE</h3>
+            <a href="ComingSoon.html">Terms of Service</a>
+            <a href="ComingSoon.html">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- BOTTOM BAR -->
+        <div class="foot-bottom">
+          <div class="foot-copy">
+            &copy; 2026
+            <a href="https://ugfxlab.com/">UGFX LAB</a> — All Rights Reserved
+          </div>
+          <div class="foot-credit">
+            Designed by
+            <a
+              href="https://skilled-va.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Skilled VA</a
+            >
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

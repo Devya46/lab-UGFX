@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes"
+    />
+    <title>Coming Soon</title>
+
+    <!-- Playfair Display — premium serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ---- reset & full black canvas ---- */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        min-height: 100vh;
+        background: #000000; /* pure black — clean & premium */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* ---- centered stack: logo + headline, nothing else ---- */
+      .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        font-family: "DM Sans", Inter, Arial, sans-serif;
+      }
+
+      /* ---- logo (plain image, no card, no background) ---- */
+      .logo {
+        display: block;
+        max-width: 110px;
+        width: 100%;
+        height: auto;
+        margin-bottom: 0.75rem;
+        filter: drop-shadow(0 0 22px rgba(0, 217, 255, 0.18));
+        transition: filter 0.45s ease;
+      }
+
+      /* ---- Coming Soon — Playfair Display, premium ---- */
+      .coming-soon {
+        /* font-family: "Playfair Display", Georgia, serif; */
+        font-size: clamp(1.8rem, 11vw, 3rem);
+        font-weight: 700; /* strong but elegant */
+        line-height: 1.15;
+        letter-spacing: 0.02em; /* airy, luxe spacing */
+        text-transform: none; /* keep title-case for elegance */
+        margin: 0;
+        padding: 0;
+        transition:
+          text-shadow 0.45s ease,
+          letter-spacing 0.45s ease;
+      }
+
+      /* "Coming" — pure white */
+      .coming-soon .white {
+        color: #ffffff;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+        font-family: "DM Sans", Inter, Arial, sans-serif;
+      }
+
+      /* "Soon" — #00D9FF with glow */
+      .coming-soon .cyan {
+        color: #00d9ff;
+        text-shadow: 0 0 40px rgba(0, 217, 255, 0.4);
+        font-family: "Playfair Display", Georgia, serif;
+      }
+
+      /* .coming-soon:hover .white {
+        text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+      }
+
+      .coming-soon:hover .cyan {
+        text-shadow: 0 0 60px rgba(0, 217, 255, 0.7);
+      } */
+
+      /* ---- fully responsive ---- */
+      @media (max-width: 640px) {
+        body {
+          padding: 1rem;
+        }
+
+        .logo {
+          max-width: 130px;
+          margin-bottom: 2.25rem;
+        }
+
+        .coming-soon {
+          font-size: clamp(2.2rem, 13vw, 3.8rem);
+          letter-spacing: 0.015em;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .logo {
+          max-width: 100px;
+          margin-bottom: 1.75rem;
+        }
+
+        .coming-soon {
+          font-size: 1.9rem;
+          letter-spacing: 0.01em;
+        }
+      }
+
+      /* extra tall screens — breathing room */
+      @media (min-height: 900px) {
+        .logo {
+          max-width: 190px;
+          margin-bottom: 3.25rem;
+        }
+
+        .coming-soon {
+          font-size: clamp(3rem, 12vw, 6.5rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <!-- Logo image — replace src with your actual logo -->
+      <img
+        class="logo"
+        src="Photos/logo-Photoroom-1.png"
+        alt="Company logo"
+        width="260"
+        height="90"
+        loading="eager"
+      />
+
+      <!-- Coming (white) Soon (#00D9FF) -->
+      <h1 class="coming-soon">
+        <span class="white">Coming</span> <span class="cyan">Soon</span>
+      </h1>
+    </div>
+  </body>
+</html>

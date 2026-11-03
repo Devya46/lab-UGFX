@@ -1,0 +1,849 @@
+<!-- ----- header---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UGFXLAB</title>
+    <link
+      rel="shortcut icon"
+      href="Photos/logo-Photoroom.png"
+      type="image/x-icon"
+    />
+    <!-- Google Font & Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: Inter, Arial, sans-serif;
+        background: #02090e;
+        color: #ffffff;
+      }
+
+      /* ===== SCROLL LOCK (robust — works on iOS & desktop) ===== */
+      body.menu-open {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+
+      /* ===== NAVBAR — professional, compact ===== */
+      .navbar {
+        width: 100%;
+        height: 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        padding: 0 4%;
+        background: #02090e;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        transition: all 0.3s ease;
+      }
+
+      .navbar.scrolled {
+        height: 76px;
+        background: rgba(2, 9, 14, 0.96);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      /* ===== BRAND — tighter ===== */
+      .brand {
+        display: flex;
+        align-items: center;
+        min-width: 240px;
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 78px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-name {
+        margin-left: 11px;
+        font-size: 26px;
+        line-height: 1;
+        font-weight: 700;
+        letter-spacing: -1px;
+        color: #f0f4f7;
+      }
+
+      .brand-name span {
+        color: #09c8ec;
+      }
+
+      /* ===== NAVIGATION — reduced font, balanced spacing ===== */
+      .nav-menu {
+        flex: 1;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 38px;
+      }
+
+      .nav-link {
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        color: #eef2f5;
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        white-space: nowrap;
+        transition: color 0.2s ease;
+      }
+
+      /* Right angle arrow — pinned to the very right edge */
+      .nav-link .nav-arrow {
+        position: absolute;
+        right: -18px;
+        top: 50%;
+        transform: translateY(-50%) translateX(-4px);
+        font-size: 16px;
+        color: #09c8ec;
+        opacity: 0;
+        transition:
+          opacity 0.2s ease,
+          transform 0.2s ease;
+        pointer-events: none;
+      }
+
+      .nav-link:hover {
+        color: #09c8ec;
+      }
+
+      /* .nav-link:hover .nav-arrow {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0);
+      } */
+
+      /* Active underline – slimmer & closer to text */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 26px;
+        height: 3px;
+        border-radius: 20px;
+        background: #09c8ec;
+        transform: scaleX(0);
+        transition: transform 0.25s ease;
+      }
+
+      .nav-link.active::after {
+        transform: scaleX(1);
+      }
+
+      /* ===== JOIN BUTTON — compact, refined ===== */
+      .community-btn {
+        min-width: 190px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 18px;
+        background: #09c8ec;
+        color: #031017;
+        text-decoration: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: -0.2px;
+        transition: all 0.25s ease;
+      }
+
+      .community-btn i {
+        font-size: 20px;
+      }
+
+      .community-btn:hover {
+        transform: translateY(-2px);
+        background: #1ad9f2;
+        box-shadow: 0 8px 25px rgba(11, 210, 237, 0.2);
+      }
+
+      /* ===== MOBILE TOGGLE ===== */
+      .menu-toggle {
+        display: none;
+        width: 44px;
+        height: 44px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .menu-toggle span {
+        width: 22px;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 10px;
+        transition: 0.3s;
+      }
+
+      /* ===== MOBILE MENU ===== */
+      .mobile-menu {
+        display: none;
+      }
+
+      /* ===== TABLET (≤1250px) ===== */
+      @media (max-width: 1250px) {
+        .navbar {
+          padding: 0 3%;
+        }
+
+        .brand {
+          min-width: 200px;
+        }
+
+        .brand img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .brand-name {
+          font-size: 23px;
+          margin-left: 9px;
+        }
+
+        .nav-menu {
+          gap: 22px;
+        }
+
+        .nav-link {
+          font-size: 14px;
+        }
+
+        .nav-link .nav-arrow {
+          right: -14px;
+          font-size: 14px;
+        }
+
+        .nav-link::after {
+          bottom: 22px;
+          height: 3px;
+        }
+
+        .community-btn {
+          min-width: 200px;
+          height: 46px;
+          font-size: 14px;
+          padding: 0 18px;
+        }
+
+        .community-btn i {
+          font-size: 18px;
+        }
+      }
+
+      /* ===== MOBILE (≤1050px) ===== */
+      @media (max-width: 1050px) {
+        .navbar {
+          height: 78px;
+        }
+
+        .navbar.scrolled {
+          height: 62px;
+        }
+
+        .nav-menu,
+        .community-btn {
+          display: none;
+        }
+
+        .brand {
+          min-width: auto;
+        }
+
+        .brand img {
+          width: 46px;
+          height: 46px;
+        }
+
+        .brand-name {
+          font-size: 22px;
+          letter-spacing: -0.8px;
+          margin-left: 8px;
+        }
+
+        .menu-toggle {
+          display: flex;
+          margin-left: auto;
+        }
+
+        /* Mobile dropdown */
+        .mobile-menu {
+          position: fixed;
+          top: 78px;
+          left: 0;
+          width: 100%;
+          padding: 18px 6% 28px;
+          background: #02090e;
+          display: flex;
+          flex-direction: column;
+          gap: 2px;
+          z-index: 999;
+          transform: translateY(-120%);
+          transition: transform 0.35s ease;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+          box-shadow: 0 20px 30px -20px rgba(0, 0, 0, 0.6);
+          /* Keep menu from scrolling the page behind it */
+          overscroll-behavior: contain;
+          max-height: calc(100vh - 78px);
+          overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+          transform: translateY(0);
+        }
+
+        .mobile-menu a {
+          color: #ffffff;
+          text-decoration: none;
+          padding: 14px 4px;
+          font-size: 15px;
+          font-weight: 500;
+          letter-spacing: -0.2px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        /* Icons appear ONLY in the mobile menu */
+        .mobile-menu a .m-icon {
+          width: 18px;
+          text-align: center;
+          color: #7a8a94;
+          font-size: 14px;
+        }
+
+        /* Angle arrow pushed to the far right of each mobile link */
+        .mobile-menu a .m-arrow {
+          margin-left: auto;
+          color: #09c8ec;
+          font-size: 16px;
+        }
+
+        .mobile-menu a:hover {
+          color: #09c8ec;
+        }
+
+        .mobile-menu a:hover .m-icon {
+          color: #09c8ec;
+        }
+
+        .mobile-community-btn {
+          margin-top: 14px;
+          background: #09c8ec;
+          color: #021017 !important;
+          border-radius: 8px;
+          text-align: center;
+          font-weight: 700 !important;
+          border: none !important;
+          padding: 14px 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          font-size: 15px;
+        }
+
+        .mobile-community-btn .m-icon {
+          color: #021017;
+        }
+      }
+
+      /* ===== SMALL MOBILE (≤550px) ===== */
+      @media (max-width: 550px) {
+        .navbar {
+          padding: 0 16px;
+        }
+
+        .brand img {
+          width: 110px;
+          height: 55px;
+        }
+
+        .brand-name {
+          font-size: 19px;
+          letter-spacing: -0.5px;
+          margin-left: 7px;
+        }
+
+        .mobile-menu {
+          top: 78px;
+          padding: 16px 5% 26px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="navbar" id="navbar">
+      <!-- LOGO + NAME -->
+      <a href="#" class="brand">
+        <img src="Photos/logo-Photoroom-1.png" alt="UGFXLAB Logo" />
+        <!-- <span class="brand-name">UGFX<span>LAB</span></span> -->
+      </a>
+
+      <!-- DESKTOP NAV (text only — no icons) -->
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">
+          <span>Home</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#about-founder" class="nav-link">
+          <span>About</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="ComingSoon.html" class="nav-link">
+          <span>Community</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="ComingSoon.html" class="nav-link">
+          <span>The LAB</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="ComingSoon.html" class="nav-link">
+          <span>Free Tools</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#student-results" class="nav-link">
+          <span>Results</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+        <a href="index.html#ContactUs" class="nav-link">
+          <span>Contact</span>
+          <i class="fa fa-angle-right nav-arrow" aria-hidden="true"></i>
+        </a>
+      </nav>
+
+      <!-- JOIN BUTTON -->
+      <a href="https://t.me/ugfxlab" class="community-btn">
+        <i class="fa-brands fa-telegram"></i>
+        <span>Join Free Community</span>
+      </a>
+
+      <!-- HAMBURGER -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- MOBILE NAV (with icons) -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">
+        <i class="fa-solid fa-house m-icon"></i>
+        <span>Home</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#about-founder">
+        <i class="fa-solid fa-circle-info m-icon"></i>
+        <span>About</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-users m-icon"></i>
+        <span>Community</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-flask m-icon"></i>
+        <span>THE LAB</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="ComingSoon.html">
+        <i class="fa-solid fa-toolbox m-icon"></i>
+        <span>Free Tools</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#student-results">
+        <i class="fa-solid fa-chart-line m-icon"></i>
+        <span>Results</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="index.html#ContactUs">
+        <i class="fa-solid fa-envelope m-icon"></i>
+        <span>Contact</span>
+        <i class="fa fa-angle-right m-arrow" aria-hidden="true"></i>
+      </a>
+      <a href="https://t.me/ugfxlab" class="mobile-community-btn">
+        <i class="fa-brands fa-telegram m-icon"></i>
+        &nbsp; Join Free Community
+      </a>
+    </div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+      (function () {
+        // Navbar scroll effect
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+          if (window.scrollY > 30) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+
+        // Mobile menu toggle — with robust scroll lock
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        let scrollPosition = 0;
+
+        function lockScroll() {
+          // Remember current scroll position
+          scrollPosition =
+            window.pageYOffset || document.documentElement.scrollTop;
+
+          // Prevent the page from shifting horizontally (scrollbar width)
+          const scrollbarWidth =
+            window.innerWidth - document.documentElement.clientWidth;
+          document.body.style.paddingRight = scrollbarWidth + "px";
+
+          // Freeze the page at the current position
+          document.body.style.top = -scrollPosition + "px";
+          document.body.classList.add("menu-open");
+        }
+
+        function unlockScroll() {
+          document.body.classList.remove("menu-open");
+          document.body.style.top = "";
+          document.body.style.paddingRight = "";
+
+          // Restore scroll position without animation jump
+          window.scrollTo(0, scrollPosition);
+        }
+
+        menuToggle.addEventListener("click", function (e) {
+          e.stopPropagation();
+          const isOpen = mobileMenu.classList.toggle("open");
+          if (isOpen) {
+            lockScroll();
+          } else {
+            unlockScroll();
+          }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll(".mobile-menu a").forEach(function (link) {
+          link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
+            unlockScroll();
+          });
+        });
+
+        // Active link switching (desktop)
+        const navLinks = document.querySelectorAll(".nav-link");
+        navLinks.forEach(function (link) {
+          link.addEventListener("click", function (e) {
+            navLinks.forEach(function (item) {
+              item.classList.remove("active");
+            });
+            this.classList.add("active");
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<!-- ---- floating icons---- -->
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>floating social · icons only</title>
+    <!-- Font Awesome 6 (free) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      /* minimal reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .body-icons {
+        background: #0b0f14; /* deep dark background */
+        /* min-height: 100vh; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, sans-serif;
+      }
+
+      /* floating wrapper – fixed bottom right */
+      .floating-social {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      /* toggle button (main circle) */
+      .social-toggle {
+        width: 62px;
+        height: 62px;
+        border-radius: 50%;
+        background: #004b9e;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.9rem;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.6);
+        transition:
+          background 0.2s,
+          transform 0.15s;
+        outline: none;
+      }
+
+      .social-toggle:hover {
+        background: #2c3e52;
+        transform: scale(1.04);
+      }
+
+      .social-toggle:active {
+        transform: scale(0.96);
+      }
+
+      /* menu container – appears above the toggle */
+      .social-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px) scale(0.9);
+        transition:
+          opacity 0.22s ease,
+          transform 0.22s ease,
+          visibility 0.22s;
+        pointer-events: none;
+        /* keep it above the button in stacking */
+        order: -1; /* ensures it appears before toggle in flex column */
+      }
+
+      /* when active */
+      .floating-social.active .social-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+      }
+
+      /* individual icon buttons – circular */
+      .social-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        /* /* background: #1e2a3a; */
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        transition:
+          background 0.2s,
+          transform 0.15s,
+          box-shadow 0.2s;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .social-icon.telegram {
+        background: #26a5e4;
+        color: white;
+      }
+
+      /* hover effects per brand */
+      .social-icon.telegram:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(38, 165, 228, 0.35);
+      }
+      .social-icon.whatsapp {
+        background: #25d366;
+        color: white;
+      }
+
+      .social-icon.whatsapp:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 24px rgba(37, 211, 102, 0.35);
+      }
+
+      /* icon colours inside (when not hovered) */
+      /* .social-icon.telegram i {
+        color: #26a5e4;
+        transition: color 0.2s;
+      }
+
+      .social-icon.whatsapp i {
+        color: #25d366;
+        transition: color 0.2s;
+      } */
+
+      /* on hover, the icon inside becomes white (since bg becomes brand colour) */
+      /* .social-icon.telegram:hover i,
+      .social-icon.whatsapp:hover i {
+        color: #ffffff;
+      } */
+
+      /* small mobile adjust */
+      @media (max-width: 500px) {
+        .floating-social {
+          bottom: 1.2rem;
+          right: 1.2rem;
+          gap: 0.6rem;
+        }
+
+        .social-toggle {
+          width: 56px;
+          height: 56px;
+          font-size: 1.7rem;
+        }
+
+        .social-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="body-icons">
+      <!-- floating widget: toggle + icons (no text) -->
+      <div class="floating-social" id="floatingSocial">
+        <!-- social menu (appears above due to order: -1) -->
+        <div class="social-menu" id="socialMenu">
+          <!-- Telegram channel -->
+          <a
+            href="https://t.me/fxlab_admin"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon telegram"
+            aria-label="Telegram channel"
+          >
+            <i class="fab fa-telegram-plane"></i>
+          </a>
+          <!-- WhatsApp link -->
+          <a
+            href="https://wa.me/message/A6ENZ2W5UUSJK1"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="social-icon whatsapp"
+            aria-label="WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </a>
+        </div>
+
+        <!-- main toggle button -->
+        <button
+          class="social-toggle"
+          id="toggleBtn"
+          aria-label="Social media menu"
+          aria-expanded="false"
+        >
+          <!-- <i class="fas fa-share-alt"></i> -->
+          <i class="fa-solid fa-comment"></i>
+        </button>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const container = document.getElementById("floatingSocial");
+        const toggleBtn = document.getElementById("toggleBtn");
+        const socialMenu = document.getElementById("socialMenu");
+
+        // Toggle active class (menu appears above)
+        function toggleMenu() {
+          const isActive = container.classList.toggle("active");
+          toggleBtn.setAttribute("aria-expanded", isActive);
+        }
+
+        // Click on main button
+        toggleBtn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          toggleMenu();
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function (e) {
+          if (!container.contains(e.target)) {
+            if (container.classList.contains("active")) {
+              container.classList.remove("active");
+              toggleBtn.setAttribute("aria-expanded", "false");
+            }
+          }
+        });
+
+        // Stop propagation on menu clicks (so clicking the icons doesn't close before navigation)
+        socialMenu.addEventListener("click", function (e) {
+          e.stopPropagation();
+        });
+
+        // close with Escape
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && container.classList.contains("active")) {
+            container.classList.remove("active");
+            toggleBtn.setAttribute("aria-expanded", "false");
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
